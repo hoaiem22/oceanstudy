@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".StartActivity">
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+
+            <LinearLayout
+                android:id="@+id/layoutHeader"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/header2"
+                android:orientation="vertical">
+
+
+
+                
+
+            </LinearLayout>
+            <pl.droidsonroids.gif.GifImageView
+                android:layout_width="60dp"
+                android:layout_height="45dp"
+                android:src="@drawable/relax_header"
+                app:layout_constraintBottom_toBottomOf="@+id/layoutHeader"
+                app:layout_constraintRight_toLeftOf="@+id/layoutHeader"
+                app:layout_constraintLeft_toRightOf="@+id/layoutHeader"
+                />
+            <LinearLayout
+                android:id="@+id/layoutBody"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/body"
+                android:orientation="vertical"
+                app:layout_constraintTop_toBottomOf="@+id/layoutHeader">
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingTop="100dp">
+
+                    <pl.droidsonroids.gif.GifImageView
+                        android:id="@+id/bubble1"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:background="@drawable/ic_image2vector"/>
+
+                    <ImageView
+                        android:id="@+id/bubble2"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:background="@drawable/ic_image2vector"/>
+                    <ImageView
+                        android:id="@+id/bubble3"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:background="@drawable/ic_image2vector"/>
+
+
+
+                    <pl.droidsonroids.gif.GifImageView
+                        android:id="@+id/fish1"
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:src="@drawable/dolphingif"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:onClick="showFishInfo1"/>
+                    <pl.droidsonroids.gif.GifImageView
+                        android:id="@+id/fish2"
+                        android:layout_width="210dp"
+                        android:layout_height="190dp"
+                        android:src="@drawable/shark_gif"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/fish1"
+                        android:layout_marginTop="100dp"
+                        android:onClick="showFishInfo2"
+                        />
+                    <pl.droidsonroids.gif.GifImageView
+                        android:id="@+id/fish3"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/seahorse_gif"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/fish2"
+                        android:layout_marginTop="100dp"
+                        android:onClick="showFishInfo3"
+                        />
+                    <pl.droidsonroids.gif.GifImageView
+                        android:id="@+id/fish4"
+                        android:layout_width="300dp"
+                        android:layout_height="250dp"
+                        android:background="@drawable/whale_gif"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/fish7"
+                        android:layout_marginTop="100dp"
+                        android:onClick="showFishInfo4"
+                        />
+
+
+                    <pl.droidsonroids.gif.GifImageView
+                        android:id="@+id/fish7"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:background="@drawable/optopus"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/fish3"
+                        android:layout_marginTop="100dp"
+                        android:onClick="showFishInfo5"
+                        />
+
+
+
+
+                    <pl.droidsonroids.gif.GifImageView
+                        android:id="@+id/fish_home_1"
+                        android:layout_width="100dp"
+                        android:layout_height="80dp"
+                        android:src="@drawable/ray_home"/>
+
+                    <ImageView
+                        android:id="@+id/fish_home_2"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/cartoon2"/>
+
+                    <ImageView
+                        android:id="@+id/fish_home_3"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/cartoon2"/>
+                    <pl.droidsonroids.gif.GifImageView
+                        android:id="@+id/fish_home_4"
+                        android:layout_width="100dp"
+                        android:layout_height="50dp"
+                        android:src="@drawable/diving_man"/>
+
+                    <ImageView
+                        android:id="@+id/fish_home_5"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/cartoon2"/>
+
+                    <ImageView
+                        android:id="@+id/fish_home_6"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/cartoon2"/>
+
+                    <ImageView
+                        android:id="@+id/fish_home_7"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/cartoon"/>
+
+
+                </android.support.constraint.ConstraintLayout>
+
+
+
+
+            </LinearLayout>
+
+        </android.support.constraint.ConstraintLayout>
+
+
+    </ScrollView>
+
+</LinearLayout>
