@@ -12,6 +12,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import java.util.Timer;
@@ -22,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private int screenHeight;
     private int screenWidth;
 
+    Button btnStart;
 
 
     private ImageView fish_home_1;
@@ -77,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
         MediaPlayer mp = MediaPlayer.create(this, R.raw.button_click_1);
         mp.start();
         Intent intent = new Intent(this, StartActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
 
     }
@@ -87,6 +90,8 @@ public class MainActivity extends AppCompatActivity {
         fish_home_2 =  findViewById(R.id.fish_home_2);
         fish_home_3 = findViewById(R.id.fish_home_3);
 
+        btnStart = findViewById(R.id.btnStart);
+
         TranslateAnimation translateYAnimation = new TranslateAnimation(0f, 0f, 0f, -15f);
         translateYAnimation.setDuration(1000);
         translateYAnimation.setRepeatCount(Animation.INFINITE);
@@ -94,6 +99,7 @@ public class MainActivity extends AppCompatActivity {
         fish_home_1.setAnimation(translateYAnimation);
         fish_home_2.setAnimation(translateYAnimation);
         fish_home_3.setAnimation(translateYAnimation);
+        btnStart.setAnimation(translateYAnimation);
 
 
 

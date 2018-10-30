@@ -12,10 +12,12 @@ import android.view.Display;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -28,13 +30,15 @@ public class StartActivity extends AppCompatActivity {
 
     Context context = this;
 
-
+    Button btnPlayGame;
+    TextView txtHuongDan;
+    ImageView arrow;
 
     private ImageView fish_home_1;
     private ImageView fish_home_2;
     private ImageView fish_home_3;
     private ImageView fish_home_4;
-    private ImageView fish_home_5;
+
     private ImageView fish_home_6;
     private ImageView fish_home_7;
 
@@ -62,8 +66,7 @@ public class StartActivity extends AppCompatActivity {
     private float fish_home_3_Y;
     private float fish_home_4_X;
     private float fish_home_4_Y;
-    private float fish_home_5_X;
-    private float fish_home_5_Y;
+
     private float fish_home_6_X;
     private float fish_home_6_Y;
     private float fish_home_7_X;
@@ -102,13 +105,26 @@ public class StartActivity extends AppCompatActivity {
         fish3 =  findViewById(R.id.fish3);
         fish4 =  findViewById(R.id.fish4);
 
+        btnPlayGame = findViewById(R.id.btnPlayGame);
+        txtHuongDan = findViewById(R.id.text_huongdan);
+        arrow = findViewById(R.id.arrow_down);
+
         fish_home_1 = findViewById(R.id.fish_home_1);
         fish_home_2 =  findViewById(R.id.fish_home_2);
         fish_home_3 = findViewById(R.id.fish_home_3);
         fish_home_4 = findViewById(R.id.fish_home_4);
-        fish_home_5 =  findViewById(R.id.fish_home_5);
+
         fish_home_6 = findViewById(R.id.fish_home_6);
         fish_home_7 = findViewById(R.id.fish_home_7);
+
+
+        Animation fadeOut = new AlphaAnimation(1, 0);
+        fadeOut.setDuration(20000);
+        arrow.setAnimation(fadeOut);
+        txtHuongDan.setAnimation(fadeOut);
+        arrow.setVisibility(View.INVISIBLE);
+        txtHuongDan.setVisibility(View.INVISIBLE);
+
 
         TranslateAnimation translateYAnimation = new TranslateAnimation(0f, 0f, 0f, -15f);
         translateYAnimation.setDuration(900);
@@ -118,6 +134,7 @@ public class StartActivity extends AppCompatActivity {
         fish2.setAnimation(translateYAnimation);
         fish3.setAnimation(translateYAnimation);
         fish4.setAnimation(translateYAnimation);
+//        btnPlayGame.setAnimation(translateYAnimation);
 
         translateYAnimation = new TranslateAnimation(0f, 0f, 0f, -10f);
         translateYAnimation.setDuration(1000);
@@ -127,7 +144,7 @@ public class StartActivity extends AppCompatActivity {
         fish_home_2.setAnimation(translateYAnimation);
         fish_home_3.setAnimation(translateYAnimation);
         fish_home_4.setAnimation(translateYAnimation);
-        fish_home_5.setAnimation(translateYAnimation);
+
         fish_home_6.setAnimation(translateYAnimation);
 
 
@@ -147,8 +164,7 @@ public class StartActivity extends AppCompatActivity {
 
         fish_home_4.setX(-80.0f);
         fish_home_4.setY(-80.0f);
-        fish_home_5.setX(screenWidth + 80.0f);
-        fish_home_5.setY(-80.0f);
+
         fish_home_6.setX(screenWidth + 80.0f);
         fish_home_6.setY(-80.0f);
 
@@ -285,15 +301,6 @@ public class StartActivity extends AppCompatActivity {
         fish_home_4.setX(fish_home_4_X);
         fish_home_4.setY(fish_home_4_Y);
 
-        fish_home_5_X += 3;
-        if (fish_home_5.getX() > screenWidth){
-            fish_home_5_X = -100.0f;
-            fish_home_5_Y = (float)Math.floor(Math.random() * (screenHeight - fish_home_5.getHeight()) + 100.0f);
-
-        }
-        fish_home_5.setX(fish_home_5_X);
-        fish_home_5.setY(fish_home_5_Y);
-
 
         fish_home_6_X += 5;
         if (fish_home_6.getX() > screenWidth){
@@ -421,4 +428,11 @@ public class StartActivity extends AppCompatActivity {
         startService(intent);
     }
 
+    public void changeToGame(View view) {
+        MediaPlayer mp = MediaPlayer.create(this, R.raw.button_click_1);
+        mp.start();
+        Intent intent = new Intent(StartActivity.this, GameActivity.class);
+
+        startActivity(intent);
+    }
 }

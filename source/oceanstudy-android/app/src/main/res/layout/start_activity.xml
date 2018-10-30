@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -7,9 +7,14 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".StartActivity">
+
+
+
     <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
@@ -23,6 +28,23 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/header2"
                 android:orientation="vertical">
+
+
+                    <ImageView
+                        android:id="@+id/arrow_down"
+                        android:layout_width="25dp"
+                        android:layout_height="30dp"
+                        android:layout_marginTop="200dp"
+                        android:src="@drawable/arrow"
+                        />
+                <TextView
+                    android:id="@+id/text_huongdan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:text="Chạm Vào Cá Ở Giữa"/>
+
+
 
 
 
@@ -72,7 +94,7 @@
                         android:id="@+id/fish1"
                         android:layout_width="120dp"
                         android:layout_height="120dp"
-                        android:src="@drawable/dolphingif"
+                        android:src="@drawable/dolphin"
                         app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
@@ -81,18 +103,17 @@
                         android:id="@+id/fish2"
                         android:layout_width="210dp"
                         android:layout_height="190dp"
-                        android:src="@drawable/shark_gif"
+                        android:src="@drawable/shark"
                         app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/fish1"
-                        android:layout_marginTop="100dp"
                         android:onClick="showFishInfo2"
                         />
                     <pl.droidsonroids.gif.GifImageView
                         android:id="@+id/fish3"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
-                        android:background="@drawable/seahorse_gif"
+                        android:background="@drawable/seahorse"
                         app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/fish2"
@@ -103,7 +124,7 @@
                         android:id="@+id/fish4"
                         android:layout_width="300dp"
                         android:layout_height="250dp"
-                        android:background="@drawable/whale_gif"
+                        android:background="@drawable/whale"
                         app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/fish7"
@@ -116,7 +137,7 @@
                         android:id="@+id/fish7"
                         android:layout_width="70dp"
                         android:layout_height="70dp"
-                        android:background="@drawable/optopus"
+                        android:background="@drawable/octopus"
                         app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/fish3"
@@ -151,12 +172,6 @@
                         android:src="@drawable/diving_man"/>
 
                     <ImageView
-                        android:id="@+id/fish_home_5"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:src="@drawable/cartoon2"/>
-
-                    <ImageView
                         android:id="@+id/fish_home_6"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
@@ -181,4 +196,23 @@
 
     </ScrollView>
 
-</LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintRight_toRightOf="@+id/scrollView"
+        >
+        <Button
+            android:id="@+id/btnPlayGame"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Chơi trò chơi"
+            android:textStyle="bold"
+            android:backgroundTint="@android:color/holo_orange_light"
+            android:onClick="changeToGame"
+            android:layout_marginTop="10dp"
+            />
+    </LinearLayout>
+
+
+
+</android.support.constraint.ConstraintLayout>

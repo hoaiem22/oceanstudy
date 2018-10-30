@@ -32,7 +32,7 @@
         android:id="@+id/txt_fish_info_english"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Tên tiếng anh là: OPTOPUS."
+        android:text="Tên tiếng anh là: OCTOPUS."
         app:layout_constraintTop_toBottomOf="@+id/txt_fish_name"
         app:layout_constraintRight_toLeftOf="parent"
         app:layout_constraintLeft_toRightOf="parent"
