@@ -1,0 +1,61 @@
+<div th:fragment="content" class="app-content container center-layout mt-2" style="height: 100%;">
+            <div class="content-wrapper">
+                <div class="content-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title" style="font-size: 30px; text-align: center;"><span th:text="#{text.information}">TEAM</span></h4>
+                                    <a class="heading-elements-toggle"><i class="ft-ellipsis-h font-medium-3"></i></a>
+                                    <div class="heading-elements">
+                                        <ul class="list-inline mb-0">
+                                            <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
+                                            <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
+                                            <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
+                                            <li><a data-action="close"><i class="ft-x"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="card-content collapse show">
+                                    <div class="card-body card-dashboard ">
+
+                                        <form id="frmHot" th:action="@{/saveTeam}" method="POST"
+                                              enctype="multipart/form-data">
+
+                                            <div class="alert alert-danger alert-dismissible" id="errorEmpty"
+                                                 style="display: none;">
+                                                <a class="close" data-dismiss="alert" aria-label="close">&times;</a> <strong>Chưa
+                                                    có dữ liệu</strong>
+                                            </div>
+                                            <div class="alert alert-danger alert-dismissible" id="errorHandsontable"
+                                                 style="display: none;">
+                                                <a class="close" data-dismiss="alert" aria-label="close">&times;</a> <strong>Dữ
+                                                    liệu bạn nhập không đúng.</strong>
+                                            </div>
+                                            <div id="team" class="hot handsontable htRowHeaders htColumnHeaders"></div>
+
+                                            <div class="col-12">
+
+                                                <button class="btn btn-info" name="btnSave">
+                                                    <i class="ft-save"></i>&nbsp;<span th:text="#{button.save}">Save</span>
+                                                </button>
+<!--                                                 <a class="btn btn-info" th:href="@{/team/download}" target="_blank"> <i -->
+<!--                                                         class="fa fa-download"></i>&nbsp;<span th:text="#{button.export}">Export</span> -->
+<!--                                                 </a> -->
+                                                <div id="result" class="alert alert-success mb-2 hidden-xs" role="alert"
+                                                     style="display: none">
+                                                    <strong th:text="#{alert.save.ok}">Save OK</strong>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>

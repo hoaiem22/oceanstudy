@@ -8,12 +8,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import fpt.oceanstudy.entity.OsFish;
 import fpt.oceanstudy.repository.FishRepository;
 
 @Controller
+@RequestMapping("/fish")
 public class FishController {
 
     /** For logging. */
@@ -27,5 +29,11 @@ public class FishController {
     public List<OsFish> getAllFish() {
         
         return (List<OsFish>) fishRepository.findAll();
+    }
+    
+    @ResponseBody
+    @GetMapping("/getAllFishAsc")
+    public List<OsFish> getAllFishDesc() {
+        return (List<OsFish>) fishRepository.sortByDeep();
     }
 }

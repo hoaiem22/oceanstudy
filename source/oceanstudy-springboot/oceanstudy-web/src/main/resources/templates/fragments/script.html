@@ -1,0 +1,114 @@
+<!DOCTYPE unspecified PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+    <div th:fragment="script">
+        <!-- Determine the root context of the application.  -->
+        <!-- BEGIN VENDOR JS-->
+        <script type="text/javascript" th:src="@{#{theme.root} + 'robust-admin/app-assets/vendors/js/vendors.min.js'}"></script>
+        <!-- BEGIN VENDOR JS-->
+        <script th:src="@{#{theme.root} + 'robust-admin/app-assets/vendors/js/ui/jquery.sticky.js'}"></script>
+        <script th:src="@{#{theme.root} + 'robust-admin/app-assets/vendors/js/gallery/masonry/masonry.pkgd.min.js'}"></script>
+        <script th:src="@{#{theme.root} + 'robust-admin/app-assets/vendors/js/gallery/photo-swipe/photoswipe.min.js'}"></script>
+        <script
+            th:src="@{#{theme.root} + 'robust-admin/app-assets/vendors/js/gallery/photo-swipe/photoswipe-ui-default.min.js'}"></script>
+        <!-- BEGIN PAGE VENDOR JS-->
+        <script type="text/javascript"
+            th:src="@{#{theme.root} + 'robust-admin/app-assets/vendors/js/ui/jquery.sticky.js'}"></script>
+        <script type="text/javascript"
+            th:src="@{#{theme.root} + 'robust-admin/app-assets/vendors/js/forms/select/select2.full.min.js'}"></script>
+        <script type="text/javascript"
+            th:src="@{#{theme.root} + 'robust-admin/app-assets/vendors/js/charts/jquery.sparkline.min.js'}"></script>
+        <script type="text/javascript"
+            th:src="@{#{theme.root} + 'robust-admin/app-assets/vendors/js/tables/handsontable/handsontable.full.js'}"></script>
+        <script type="text/javascript"
+            th:src="@{#{theme.root} + 'robust-admin/app-assets/vendors/js/tables/handsontable/jsgrid.min.js'}"></script>
+        <script type="text/javascript"
+            th:src="@{#{theme.root} + 'robust-admin/app-assets/vendors/js/tables/handsontable/languages.min.js'}"></script>
+        <!-- unit summary -->
+        <!--         <script th:src="@{#{theme.root} + 'robust-admin/app-assets/js/scripts/pages/project-summary-task.js'}"></script> -->
+        <!--         <script th:src="@{#{theme.root} + 'robust-admin/app-assets/js/scripts/pages/project-summary-bug.js'}"></script> -->
+
+        <script type="text/javascript"
+            th:src="@{#{theme.root} + 'robust-admin/app-assets/vendors/js/tables/datatable/datatables.min.js'}"></script>
+        <script type="text/javascript"
+            th:src="@{#{theme.root} + 'robust-admin/app-assets/vendors/js/tables/datatable/dataTables.autoFill.min.js'}"></script>
+
+        <script type="text/javascript"
+            th:src="@{#{theme.root} + 'robust-admin/app-assets/vendors/js/tables/datatable/dataTables.select.min.js'}"></script>
+        <script type="text/javascript"
+            th:src="@{#{theme.root} + 'robust-admin/app-assets/vendors/js/tables/datatable/dataTables.buttons.min.js'}"></script>
+        <script type="text/javascript"
+            th:src="@{#{theme.root} + 'robust-admin/app-assets/vendors/js/tables/datatable/dataTables.bootstrap4.min.js'}"></script>
+
+        <script type="text/javascript"
+            th:src="@{#{theme.root} + 'robust-admin/app-assets/vendors/js/tables/jszip.min.js'}"></script>
+        <script type="text/javascript"
+            th:src="@{#{theme.root} + 'robust-admin/app-assets/vendors/js/tables/pdfmake.min.js'}"></script>
+        <script type="text/javascript"
+            th:src="@{#{theme.root} + 'robust-admin/app-assets/vendors/js/tables/vfs_fonts.js'}"></script>
+        <script type="text/javascript"
+            th:src="@{#{theme.root} + 'robust-admin/app-assets/vendors/js/tables/buttons.html5.min.js'}"></script>
+        <script type="text/javascript"
+            th:src="@{#{theme.root} + 'robust-admin/app-assets/vendors/js/tables/buttons.print.min.js'}"></script>
+        <script type="text/javascript"
+            th:src="@{#{theme.root} + 'robust-admin/app-assets/vendors/js/tables/datatable/dataTables.colVis.js'}"></script>
+        <!-- BEGIN ROBUST JS-->
+        <script type="text/javascript" th:src="@{#{theme.root} + 'robust-admin/app-assets/js/core/app-menu.js'}"></script>
+        <script type="text/javascript" th:src="@{#{theme.root} + 'robust-admin/app-assets/js/core/app.js'}"></script>
+        <script type="text/javascript" th:src="@{#{theme.root} + 'robust-admin/app-assets/js/scripts/customizer.js'}"></script>
+        <!-- END ROBUST JS-->
+
+        <script type="text/javascript"
+            th:src="@{#{theme.root} + 'robust-admin/app-assets/js/scripts/forms/select/form-select2.js'}"></script>
+
+        <!--         <script type="text/javascript" -->
+        <!--             th:src="@{#{theme.root} + 'robust-admin/app-assets/js/scripts/tables/handsontable/handsontable-appearance.js'}"></script> -->
+
+        <!--     <script type="text/javascript" th:src="@{#{theme.root} + 'robust-admin/app-assets/js/scripts/tables/datatables-extensions/datatable-autofill.js'}"></script> -->
+
+        <script th:src="@{#{theme.root} + 'robust-admin/app-assets/vendors/js/pickers/daterange/daterangepicker.js'}"></script>
+        <script th:src="@{#{theme.root} + 'robust-admin/app-assets/vendors/js/forms/validation/jquery.validate.min.js'}"></script>
+        <script th:src="@{#{theme.root} + 'robust-admin/app-assets/vendors/js/extensions/jquery.steps.min.js'}"></script>
+        <script th:src="@{#{theme.root} + 'robust-admin/app-assets/vendors/js/pickers/pickadate/picker.js'}"></script>
+        <script th:src="@{#{theme.root} + 'robust-admin/app-assets/vendors/js/pickers/pickadate/picker.date.js'}"></script>
+        <script th:src="@{#{theme.root} + 'robust-admin/app-assets/js/core/libraries/jquery_ui/jquery-ui.min.js'}"></script>
+        <script th:src="@{#{theme.root} + 'robust-admin/app-assets/js/scripts/modal/components-modal.js'}"></script>
+        <!--         PAGE TASK MANAGEMENT -->
+        <script th:src="@{#{theme.root} + 'robust-admin/app-assets/vendors/js/pages/lobibox/lobibox.min.js'}"></script>
+        <script th:src="@{#{theme.root} + 'robust-admin/app-assets/vendors/js/pages/lobilist/lobilist.js'}"></script>
+        <script th:src="@{#{theme.root} + 'robust-admin/app-assets/js/scripts/ui/jquery-ui/date-pickers.js'}"></script>
+
+
+        <!--         PAGE TASK MANAGEMENT -->
+        <script
+            th:src="@{#{theme.root} + 'robust-admin/app-assets/vendors/js/tables/datatable/dataTables.responsive.min.js'}"></script>
+        <script
+            th:src="@{#{theme.root} + 'robust-admin/app-assets/vendors/js/tables/datatable/dataTables.rowReorder.min.js'}"></script>
+        <script th:src="@{#{theme.root} + 'robust-admin/app-assets/vendors/js/charts/echarts/echarts.js'}"></script>
+        <script th:src="@{#{theme.root} + 'robust-admin/app-assets/vendors/js/forms/icheck/icheck.min.js'}"></script>
+        <script th:src="@{#{theme.root} + 'robust-admin/app-assets/js/scripts/pages/project-bug-list.js'}"></script>
+        <!-- ANIMATION-->
+        <!--  <script th:src="@{#{theme.root} + 'robust-admin/app-assets/js/scripts/animation/animation.js'}"></script> -->
+
+
+        <script
+            th:src="@{#{theme.root} + 'robust-admin/app-assets/js/scripts/gallery/photo-swipe/photoswipe-script.js'}"></script>
+
+        <!-- Determine the root context of the application.  -->
+        <script th:inline="javascript">
+									var _ctx = /*[[@{/}]]*/'';
+								</script>
+
+        <script th:inline="javascript">
+									var customer_code = /*[[#{customer.code}]]*/'';
+									var customer_name = /*[[#{customer.name}]]*/'';
+									var short_name = /*[[#{customer.shortName}]]*/'';
+									var phone = /*[[#{phone}]]*/'';
+									var address = /*[[#{address}]]*/'';
+									var submit = /*[[#{submit}]]*/'';
+								</script>
+        <!-- END PAGE VENDOR JS-->
+    </div>
+</body>
