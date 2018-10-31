@@ -6,7 +6,6 @@
 package fpt.oceanstudy.entity;
 
 import java.io.Serializable;
-
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -46,12 +45,13 @@ public class OsFish implements Serializable {
     private Integer id;
     @Column(name = "name", length = 50)
     private String name;
-    @Column(name = "weight")
-    private Integer weight;
-    @Column(name = "length")
-    private Integer length;
-    @Column(name = "height")
-    private Integer height;
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Column(name = "weight", precision = 22)
+    private Double weight;
+    @Column(name = "length", precision = 22)
+    private Double length;
+    @Column(name = "height", precision = 22)
+    private Double height;
     @Column(name = "deep")
     private Integer deep;
     @Column(name = "age")
@@ -84,27 +84,27 @@ public class OsFish implements Serializable {
         this.name = name;
     }
 
-    public Integer getWeight() {
+    public Double getWeight() {
         return weight;
     }
 
-    public void setWeight(Integer weight) {
+    public void setWeight(Double weight) {
         this.weight = weight;
     }
 
-    public Integer getLength() {
+    public Double getLength() {
         return length;
     }
 
-    public void setLength(Integer length) {
+    public void setLength(Double length) {
         this.length = length;
     }
 
-    public Integer getHeight() {
+    public Double getHeight() {
         return height;
     }
 
-    public void setHeight(Integer height) {
+    public void setHeight(Double height) {
         this.height = height;
     }
 
@@ -162,7 +162,7 @@ public class OsFish implements Serializable {
 
     @Override
     public String toString() {
-        return "fpt.oceanstudy.entity.OsFish[ id=" + id + " ]";
+        return "ocean.OsFish[ id=" + id + " ]";
     }
     
 }

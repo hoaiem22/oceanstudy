@@ -23,7 +23,7 @@ public class AppUtil {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String username = auth.getName(); //get logged in username
         
-        final String[] HEADERS = {"id", "name", "weight", "lenght", "height", "deep", "age", "img", "video"};
+        final String[] HEADERS = {"id", "name", "weight", "length", "height", "deep", "age", "img", "video"};
 
         LOG.info("role data=" + data.getData());
         List<OsFish> reportListRole = (List<OsFish>) BeanUtil.getDataList(data.getData(), HEADERS,

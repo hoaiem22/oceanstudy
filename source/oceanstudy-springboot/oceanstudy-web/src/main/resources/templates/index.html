@@ -17,6 +17,7 @@
     <div th:replace="fragments/footer :: footer">Footer</div>
     <!--Script file  -->
     <div th:replace="fragments/script :: script">Script</div>
+    <script th:src="@{/js/handsontable-validate.js}"></script>
 </body>
 <script>
 	var deletedIds = [];
@@ -28,13 +29,19 @@
 			data : dataUnits,
 			colHeaders : ['ID', 'Name', 'Weight', 'Length', 'Height', 'Deep',
 					'Age', 'Image', 'Video'],
-			colWidths : [100, 300, 300, 300, 100, 300, 300, 300, 100],
-			rowHeaders : true,
-			minRows : 1,
-			contextMenu : ['row_below', 'remove_row'],
-			minCols : 4,
-			manualColumnResize : true,
-			manualRowResize : true,
+			colWidths : [100, 300, 300, 300, 100, 300, 300, 300, 300],
+			rowHeaders: true,
+            minSpareRows: 1,
+            stretchH: 'all',
+            //                             minRows : 100,
+            minCols: 10,
+            minRows: 10,
+            //                 minCols: 5,
+            //                 currentRowClassName: 'currentRow',
+            //                 currentColClassName: 'currentCol',
+            manualColumnResize: true,
+            manualRowResize: true,
+            contextMenu: ['row_below', 'remove_row'],
 			columns : [{
 				data : 'id',
 				readOnly : true,
@@ -46,10 +53,10 @@
 				data : 'weight',
 
 			}, {
-				data : 'lenght',
+				data : 'length',
 
 			}, {
-				data : 'weight',
+				data : 'height',
 
 			}, {
 				data : 'deep',
@@ -89,12 +96,18 @@
 					var newVal = changes[i][3];
 					console.log("row: " + row + "; col: " + col + "; newVal: "
 							+ newVal);
-
-					//                         if (col == 1) {
-					//                             textValidator(hotFish, row, col,
-					//                                     newVal, 50);
-					//                         }
-
+					if (col == 1) {
+						nameValidator(hotFish, row, col,
+                                newVal, 50);
+                    }
+                    if (col == 2 || col == 3 || col == 4) {
+                    	isFloatNumber(hotFish, row, col,
+                                newVal, 10);
+                    }
+                    if (col == 5 || col == 6) {    	
+                    	isIntegerNumber(hotFish, row, col,
+                                newVal, 10);
+                    }
 				}
 			},
 
@@ -138,23 +151,44 @@
 		frmData["header"] = colHeaderData;
 		frmData["data"] = tableData;
 		frmData["deletedIds"] = deletedIds;
-		$.ajax({
-			url : _ctx + "saveFish",
-			type : "POST",
-			contentType : "application/json",
-			data : JSON.stringify(frmData),
-			dataType : 'json',
-			success : function(result) {
-				$('#result').fadeToggle('slow');
-				$('#result').fadeOut(5000);
-				// reload data
-				loadFish();
-			},
-			error : function() {
-				console.log("Error!");
-				alert("ERROR: Can't save fish !");
-			}
-		});
+		var ok = true;
+
+        var checkColumns = [1, 2, 3, 4, 5, 6, 7 ,8];
+        // check if row have data but column 'name' doesn't. 
+        if (areEmptyColumns(hotFish, checkColumns)) {
+            ok = false;
+            $('#errorHandsontable').show();
+        }
+        if (!isValidTable(hotFish)) {
+            ok = false;
+            $('#errorHandsontable').show();
+        }
+        // Check if handsontable have any data.
+        if (isEmptyTable(hotFish)) {
+            $('#errorEmpty').show();
+            ok = false;
+        }
+		if(ok){
+			$('#errorHandsontable').hide();
+	        $('#errorEmpty').hide();
+			$.ajax({
+				url : _ctx + "saveFish",
+				type : "POST",
+				contentType : "application/json",
+				data : JSON.stringify(frmData),
+				dataType : 'json',
+				success : function(result) {
+					$('#result').fadeToggle('slow');
+					$('#result').fadeOut(5000);
+					// reload data
+					loadFish();
+				},
+				error : function() {
+					console.log("Error!");
+					alert("ERROR: Can't save fish !");
+				}
+			});
+		}
 
 	});
 </script>
