@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Insert title here</title>
+    </head>
+    <body>
+        <div th:fragment="top_nav"
+             class="header-navbar navbar-expand-sm navbar navbar-horizontal navbar-fixed navbar-light navbar-without-dd-arrow navbar-shadow"
+             role="navigation" data-menu="menu-wrapper ">
+            <div class="navbar-container main-menu-content container center-layout" data-menu="menu-container">
+                <!-- include ../../../includes/mixins-->
+                <ul class="nav navbar-nav" id="main-menu-navigation" data-menu="menu-navigation">
+                    <li class="dropdown nav-item" data-menu="dropdown">
+                        <a class="nav-link" th:href="@{/}"><i class="fa fa-home"></i>
+                            <span data-i18n="nav.dash.main" th:text="#{text.home}">Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="dropdown nav-item"><a class="nav-link" ><i class="fa fa-table"></i><span data-i18n="nav.category.forms" th:text="#{text.dailyreport}">Daily Report</span></a>
+                        <ul class="dropdown-menu">
+                            <li data-menu=""><a class="dropdown-item" th:href="@{/admin/report/role}" data-toggle="dropdown"><i class="fa fa-user-md"></i><span th:text="#{text.role}">Role</span></a>
+                            </li>
+                            <li data-menu=""><a class="dropdown-item" th:href="@{/admin/report/unit}" data-toggle="dropdown"><i class="fa fa-btc"></i><span th:text="#{text.unit}">Unit</span></a>
+                            </li>
+                            <li data-menu=""><a class="dropdown-item" th:href="@{/admin/report/worktype}" data-toggle="dropdown"><i class="fa fa-archive"></i><span th:text="#{text.worktype}">WorkType</span></a>
+                            </li>
+                            <li data-menu=""><a class="dropdown-item" th:href="@{/admin/report/status}" data-toggle="dropdown"><i class="fa fa-check-circle-o"></i><span th:text="#{text.status}">Status</span></a>
+                            </li>
+
+                        </ul>
+                    </li>
+                    <li class="dropdown nav-item"><a class="nav-link" ><i class="fa fa-user-circle-o"></i></i><span data-i18n="nav.category.forms" th:text="#{text.user}">User</span></a>
+                        <ul class="dropdown-menu">
+                            <li data-menu=""><a class="dropdown-item" th:href="@{/admin/user/information}" data-toggle="dropdown"><i class="fa fa-user-secret"></i><span th:text="#{text.information}">User</span> <span th:text="#{text.user}">Information</span></a>
+                            </li>
+                            <li data-menu=""><a class="dropdown-item" th:href="@{/admin/user/role}" data-toggle="dropdown"><i class="fa fa-user-md"></i><span th:text="#{text.role}">User</span> <span th:text="#{text.cho}">Cho</span>  <span th:text="#{text.user}">Role</span></a>
+                            </li>
+
+
+                        </ul>
+                    </li>
+                    <li class="dropdown nav-item"><a class="nav-link" ><i class="fa fa-users"></i></i><span data-i18n="nav.category.forms" th:text="#{text.team}">Team</span></a>
+                        <ul class="dropdown-menu">
+                            <li data-menu=""><a class="dropdown-item" th:href="@{/admin/team/information}" data-toggle="dropdown"><i class="fa fa-user-secret"></i><span th:text="#{text.information}">Team</span> <span th:text="#{text.team}">Information</span></a>
+                            </li>
+                            <li data-menu=""><a class="dropdown-item" th:href="@{/admin/team/member}" data-toggle="dropdown"><i class="fa fa-user-plus"></i><span th:text="#{text.role}">Team</span> <span th:text="#{text.cho}">Cho</span>  <span th:text="#{text.team}">Role</span></a>
+                            </li>
+
+
+                        </ul>
+
+                </ul>
+            </div>
+        </div>
+
+    </body>
+</html>

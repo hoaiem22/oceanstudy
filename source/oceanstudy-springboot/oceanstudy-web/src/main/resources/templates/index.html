@@ -1,0 +1,161 @@
+<!--Robust Admin - Ver: 1.0 by EmVH - Startdate: 10/06/2018 -->
+<!DOCTYPE html>
+<html class="loading" lang="en" data-textdirection="ltr" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head"></head>
+<title>Ocean Study</title>
+</head>
+<body class="horizontal-layout horizontal-menu horizontal-menu-padding 2-columns  menu-expanded" data-open="hover"
+    data-menu="horizontal-menu" data-col="2-columns">
+    <!-- Header -->
+    <div th:replace="fragments/header :: header">Header</div>
+    <!--     Top navigation  -->
+    <!--     <div th:replace="fragments/top_nav :: top_nav">Top Navigation</div> -->
+    <!--Page content  -->
+    <div th:replace="index/user_index :: content">Content</div>
+    <!-- ////////////////////////////////////////////////////////////////////////////-->
+    <!--Footer  -->
+    <div th:replace="fragments/footer :: footer">Footer</div>
+    <!--Script file  -->
+    <div th:replace="fragments/script :: script">Script</div>
+</body>
+<script>
+	var deletedIds = [];
+	var dataUnits = [];
+	var hotFish = null;
+	$(function() {
+		var containerUnit = document.getElementById('team');
+		hotFish = new Handsontable(containerUnit, {
+			data : dataUnits,
+			colHeaders : ['ID', 'Name', 'Weight', 'Length', 'Height', 'Deep',
+					'Age', 'Image', 'Video'],
+			colWidths : [100, 300, 300, 300, 100, 300, 300, 300, 100],
+			rowHeaders : true,
+			minRows : 1,
+			contextMenu : ['row_below', 'remove_row'],
+			minCols : 4,
+			manualColumnResize : true,
+			manualRowResize : true,
+			columns : [{
+				data : 'id',
+				readOnly : true,
+
+			}, {
+				data : 'name',
+
+			}, {
+				data : 'weight',
+
+			}, {
+				data : 'lenght',
+
+			}, {
+				data : 'weight',
+
+			}, {
+				data : 'deep',
+
+			}, {
+				data : 'age',
+
+			}, {
+				data : 'img',
+
+			}, {
+				data : 'video',
+
+			}, ],
+
+			beforeRemoveRow : function(index, amount) {
+				// Support to submit deleted id into server
+				var lastIndex = index + amount;
+				var i;
+				for (i = index; i < lastIndex; i++) {
+					var deletedUnit = dataUnits[i];
+					var deletedId = deletedUnit[0];
+					console.log("deleteUnit" + deletedUnit + "deleteId = "
+							+ deletedId);
+					if (deletedId) {
+						deletedIds.push(deletedId);
+					}
+				}
+				console.log("list deletedIds=" + deletedIds);
+			},
+			beforeChange : function(changes, source) {
+
+				// changes = [[row, prop, oldVal, newVal], ...]
+				for (var i = 0; i < changes.length; i++) {
+					var row = changes[i][0];
+					var col = hotFish.propToCol(changes[i][1]);
+					var newVal = changes[i][3];
+					console.log("row: " + row + "; col: " + col + "; newVal: "
+							+ newVal);
+
+					//                         if (col == 1) {
+					//                             textValidator(hotFish, row, col,
+					//                                     newVal, 50);
+					//                         }
+
+				}
+			},
+
+		});
+		loadFish();
+	});
+
+	function loadFish() {
+		deletedIds = [];
+		// load demo data.
+		$.ajax({
+			url : _ctx + 'loadFish',
+			type : 'GET',
+			dataType : 'json',
+			contentType : 'application/json',
+			success : function(res) {
+				console.log("res=" + res);
+				dataUnits = res;
+				hotFish.loadData(dataUnits);
+			},
+			error : function(e) {
+				console.log("Error: " + e);
+			}
+		});
+	}
+</script>
+<script>
+	$('#frmHot').submit(function(e) {
+		e.preventDefault();
+		$('#errorHandsontable').hide();
+		$('#errorEmpty').hide();
+		var frmData = new FormData(this);
+
+		// Get header name
+		var colHeaderData = hotFish.getColHeader();
+
+		// Get data from Handsontable
+		var tableData = hotFish.getData();
+
+		var frmData = {};
+		frmData["header"] = colHeaderData;
+		frmData["data"] = tableData;
+		frmData["deletedIds"] = deletedIds;
+		$.ajax({
+			url : _ctx + "saveFish",
+			type : "POST",
+			contentType : "application/json",
+			data : JSON.stringify(frmData),
+			dataType : 'json',
+			success : function(result) {
+				$('#result').fadeToggle('slow');
+				$('#result').fadeOut(5000);
+				// reload data
+				loadFish();
+			},
+			error : function() {
+				console.log("Error!");
+				alert("ERROR: Can't save fish !");
+			}
+		});
+
+	});
+</script>
+</html>
