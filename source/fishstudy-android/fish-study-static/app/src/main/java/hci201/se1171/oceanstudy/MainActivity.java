@@ -25,7 +25,6 @@ public class MainActivity extends AppCompatActivity {
 
     Button btnStart;
 
-
     private ImageView fish_home_1;
     private ImageView fish_home_2;
     private ImageView fish_home_3;
@@ -67,10 +66,6 @@ public class MainActivity extends AppCompatActivity {
         BubbleAnimation();
         Intent intent = new Intent(this, BackgroundMusicService.class);
         startService(intent);
-
-
-
-
     }
 
 

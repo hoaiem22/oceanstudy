@@ -44,7 +44,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
-                    android:text="Chạm Vào Cá Ở Giữa"
+                    android:text="Chạm vào cá ở giữa"
                     android:layout_marginLeft="80dp"/>
 
 
