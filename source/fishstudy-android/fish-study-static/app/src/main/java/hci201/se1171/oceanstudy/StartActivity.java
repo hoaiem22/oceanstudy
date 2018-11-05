@@ -1,12 +1,15 @@
 package hci201.se1171.oceanstudy;
 
+import android.app.ActivityManager;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Point;
+import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Display;
 import android.view.View;
@@ -14,6 +17,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -30,9 +34,11 @@ public class StartActivity extends AppCompatActivity {
 
     Context context = this;
 
-    Button btnPlayGame;
+    ImageView btnPlayGame;
     TextView txtHuongDan;
     ImageView arrow;
+
+    ImageView boat;
 
     private ImageView fish_home_1;
     private ImageView fish_home_2;
@@ -83,6 +89,8 @@ public class StartActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.start_activity);
 
+        mp = MediaPlayer.create(getApplicationContext(), R.raw.funny_background);
+        mp.start();
 
 
         FishAnimation();
@@ -117,16 +125,17 @@ public class StartActivity extends AppCompatActivity {
         fish_home_6 = findViewById(R.id.fish_home_6);
         fish_home_7 = findViewById(R.id.fish_home_7);
 
+        boat = findViewById(R.id.boat);
 
         Animation fadeOut = new AlphaAnimation(1, 0);
-        fadeOut.setDuration(20000);
+        fadeOut.setDuration(15000);
         arrow.setAnimation(fadeOut);
         txtHuongDan.setAnimation(fadeOut);
         arrow.setVisibility(View.INVISIBLE);
         txtHuongDan.setVisibility(View.INVISIBLE);
 
 
-        TranslateAnimation translateYAnimation = new TranslateAnimation(0f, 0f, 0f, -15f);
+        TranslateAnimation translateYAnimation = new TranslateAnimation(0f, 0f, 0f, -10f);
         translateYAnimation.setDuration(900);
         translateYAnimation.setRepeatCount(Animation.INFINITE);
         translateYAnimation.setRepeatMode(Animation.REVERSE);
@@ -134,7 +143,21 @@ public class StartActivity extends AppCompatActivity {
         fish2.setAnimation(translateYAnimation);
         fish3.setAnimation(translateYAnimation);
         fish4.setAnimation(translateYAnimation);
-//        btnPlayGame.setAnimation(translateYAnimation);
+        boat.setAnimation(translateYAnimation);
+
+
+
+        TranslateAnimation translateYAnimation1 = new TranslateAnimation(0f, 0f, 0f, -10f);
+        translateYAnimation1.setDuration(600);
+        translateYAnimation1.setRepeatCount(Animation.INFINITE);
+        translateYAnimation1.setRepeatMode(Animation.REVERSE);
+
+
+
+        Animation scaleAnim = AnimationUtils.loadAnimation(this, R.anim.scale);
+        btnPlayGame.setAnimation(scaleAnim);
+
+
 
         translateYAnimation = new TranslateAnimation(0f, 0f, 0f, -10f);
         translateYAnimation.setDuration(1000);
@@ -156,20 +179,20 @@ public class StartActivity extends AppCompatActivity {
         screenHeight = size.y;
 
         fish_home_1.setX(-80.0f);
-        fish_home_1.setY(-80.0f);
+        fish_home_1.setY(-200.0f);
         fish_home_2.setX(screenWidth + 80.0f);
         fish_home_2.setY(-80.0f);
         fish_home_3.setX(screenWidth + 80.0f);
-        fish_home_3.setY(-80.0f);
+        fish_home_3.setY(-200.0f);
 
         fish_home_4.setX(-80.0f);
-        fish_home_4.setY(-80.0f);
+        fish_home_4.setY(-200.0f);
 
         fish_home_6.setX(screenWidth + 80.0f);
         fish_home_6.setY(-80.0f);
 
         fish_home_7.setX(-80.0f);
-        fish_home_7.setY(-80.0f);
+        fish_home_7.setY(-200.0f);
 
 
         timer.schedule(new TimerTask() {
@@ -201,11 +224,11 @@ public class StartActivity extends AppCompatActivity {
         screenHeight = size.y;
 
         bubble1.setX(-80.0f);
-        bubble1.setY(-80.0f);
+        bubble1.setY(-200.0f);
         bubble2.setX(-80.0f);
-        bubble2.setY(-80.0f);
+        bubble2.setY(-200.0f);
         bubble3.setX(-80.0f);
-        bubble3.setY(-80.0f);
+        bubble3.setY(-200.0f);
 
 
         timer.schedule(new TimerTask() {
@@ -227,7 +250,7 @@ public class StartActivity extends AppCompatActivity {
         bubble1_Y -= 10;
         if (bubble1.getY() + bubble1.getHeight() < 0){
             bubble1_X = (float)Math.floor(Math.random() * (screenWidth - bubble1.getWidth()));
-            bubble1_Y = screenHeight + 100.0f;
+            bubble1_Y = screenHeight + 200.0f;
         }
         bubble1.setX(bubble1_X);
         bubble1.setY(bubble1_Y);
@@ -236,7 +259,7 @@ public class StartActivity extends AppCompatActivity {
         bubble2_Y -= 10;
         if (bubble2.getY() + bubble2.getHeight() < 0){
             bubble2_X = (float)Math.floor(Math.random() * (screenWidth - bubble2.getWidth()));
-            bubble2_Y = screenHeight + 100.0f;
+            bubble2_Y = screenHeight + 200.0f;
         }
         bubble2.setX(bubble2_X);
         bubble2.setY(bubble2_Y);
@@ -244,7 +267,7 @@ public class StartActivity extends AppCompatActivity {
         bubble3_Y -= 10;
         if ( bubble3.getY() +  bubble3.getHeight() < 0){
             bubble3_X = (float)Math.floor(Math.random() * (screenWidth -  bubble3.getWidth()));
-            bubble3_Y = screenHeight + 100.0f;
+            bubble3_Y = screenHeight + 200.0f;
         }
         bubble3.setX( bubble3_X);
         bubble3.setY( bubble3_Y);
@@ -266,7 +289,7 @@ public class StartActivity extends AppCompatActivity {
 
         fish_home_1_X -= 3;
         if (fish_home_1.getX() + fish_home_1.getWidth() < 0){
-            fish_home_1_Y = (float)Math.floor(Math.random() * (screenHeight - fish_home_1.getHeight()));
+            fish_home_1_Y = (float)Math.floor(Math.random() * (screenHeight - fish_home_1.getHeight())+ 300.0f);
             fish_home_1_X = screenWidth + 100.0f;
         }
         fish_home_1.setX(fish_home_1_X);
@@ -275,7 +298,7 @@ public class StartActivity extends AppCompatActivity {
         fish_home_2_X += 2;
         if (fish_home_2.getX() > screenWidth){
             fish_home_2_X = -100.0f;
-            fish_home_2_Y = (float)Math.floor(Math.random() * (screenHeight - fish_home_2.getHeight()));
+            fish_home_2_Y = (float)Math.floor(Math.random() * (screenHeight - fish_home_2.getHeight())+ 300.0f);
 
         }
         fish_home_2.setX(fish_home_2_X);
@@ -285,7 +308,7 @@ public class StartActivity extends AppCompatActivity {
         fish_home_3_X += 5;
         if (fish_home_3.getX() > screenWidth){
             fish_home_3_X = -100.0f;
-            fish_home_3_Y = (float)Math.floor(Math.random() * (screenHeight - fish_home_3.getHeight()));
+            fish_home_3_Y = (float)Math.floor(Math.random() * (screenHeight - fish_home_3.getHeight())+ 300.0f);
 
         }
         fish_home_3.setX(fish_home_3_X);
@@ -295,7 +318,7 @@ public class StartActivity extends AppCompatActivity {
 
         fish_home_4_X -= 1;
         if (fish_home_4.getX() + fish_home_4.getWidth() < 0){
-            fish_home_4_Y = (float)Math.floor(Math.random() * (screenHeight - fish_home_4.getHeight() )+ 100.0f);
+            fish_home_4_Y = (float)Math.floor(Math.random() * (screenHeight - fish_home_4.getHeight() )+ 300.0f);
             fish_home_4_X = screenWidth + 100.0f;
         }
         fish_home_4.setX(fish_home_4_X);
@@ -305,7 +328,7 @@ public class StartActivity extends AppCompatActivity {
         fish_home_6_X += 5;
         if (fish_home_6.getX() > screenWidth){
             fish_home_6_X = -100.0f;
-            fish_home_6_Y = (float)Math.floor(Math.random() * (screenHeight - fish_home_6.getHeight())  + 100.0f);
+            fish_home_6_Y = (float)Math.floor(Math.random() * (screenHeight - fish_home_6.getHeight())  + 300.0f);
 
         }
         fish_home_6.setX(fish_home_6_X);
@@ -313,7 +336,7 @@ public class StartActivity extends AppCompatActivity {
 
         fish_home_7_X -= 3;
         if (fish_home_7.getX() + fish_home_1.getWidth() < 0){
-            fish_home_7_Y = (float)Math.floor(Math.random() * (screenHeight - fish_home_7.getHeight()));
+            fish_home_7_Y = (float)Math.floor(Math.random() * (screenHeight - fish_home_7.getHeight())+ 300.0f);
             fish_home_7_X = screenWidth + 100.0f;
         }
         fish_home_7.setX(fish_home_7_X);
@@ -331,16 +354,33 @@ public class StartActivity extends AppCompatActivity {
         dialog.setContentView(R.layout.activity_fish_dialog);
         dialog.setTitle("Thông tin của cá.");
 
-        Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonOK);
+        ImageView dialogButton = (ImageView) dialog.findViewById(R.id.dialogButtonOK);
         dialogButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mp = MediaPlayer.create(getApplicationContext(), R.raw.button_click_1);
+                mp.start();
                 dialog.dismiss();
+
             }
         });
         mp = MediaPlayer.create(this, R.raw.button_click_1);
         mp.start();
         dialog.show();
+
+//        timer.schedule(new TimerTask() {
+//            @Override
+//            public void run() {
+//                handler.post(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        mp = MediaPlayer.create(getApplicationContext(), R.raw.sound_dolphin);
+//                        mp.start();
+//                    }
+//                });
+//            }
+//        },4);
+
     }
 
     public void showFishInfo2(View view) {
@@ -355,34 +395,65 @@ public class StartActivity extends AppCompatActivity {
 //        ImageView image = (ImageView) dialog.findViewById(R.id.image);
 //        image.setImageResource(R.drawable.ic_launcher);
 
-        Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonOK);
+        ImageView dialogButton = (ImageView) dialog.findViewById(R.id.dialogButtonOK);
         dialogButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+//                mp = MediaPlayer.create(getApplicationContext(), R.raw.button_click_1);
+//                mp.start();
                 dialog.dismiss();
             }
         });
-        mp = MediaPlayer.create(this, R.raw.button_click_1);
-        mp.start();
+//        mp = MediaPlayer.create(this, R.raw.button_click_1);
+//        mp.start();
         dialog.show();
+//        timer.schedule(new TimerTask() {
+//            @Override
+//            public void run() {
+//                handler.post(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        mp = MediaPlayer.create(getApplicationContext(), R.raw.sound_shark);
+//                        mp.start();
+//                    }
+//                });
+//            }
+//        },4);
+
     }
 
     public void showFishInfo3(View view) {
 
         final Dialog dialog = new Dialog(context);
         dialog.setContentView(R.layout.activity_fish_dialog2);
+
         dialog.setTitle("Thông tin của cá.");
 
-        Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonOK);
+        ImageView dialogButton = (ImageView) dialog.findViewById(R.id.dialogButtonOK);
         dialogButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+//                mp = MediaPlayer.create(getApplicationContext(), R.raw.button_click_1);
+//                mp.start();
                 dialog.dismiss();
             }
         });
-        mp = MediaPlayer.create(this, R.raw.button_click_1);
-        mp.start();
+//        mp = MediaPlayer.create(this, R.raw.button_click_1);
+//        mp.start();
         dialog.show();
+//        timer.schedule(new TimerTask() {
+//            @Override
+//            public void run() {
+//                handler.post(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        mp = MediaPlayer.create(getApplicationContext(), R.raw.sound_seahorse);
+//                        mp.start();
+//                    }
+//                });
+//            }
+//        },4);
+
     }
 
     public void showFishInfo4(View view) {
@@ -391,16 +462,31 @@ public class StartActivity extends AppCompatActivity {
         dialog.setContentView(R.layout.activity_fish_dialog3);
         dialog.setTitle("Thông tin của cá.");
 
-        Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonOK);
+        ImageView dialogButton = (ImageView) dialog.findViewById(R.id.dialogButtonOK);
         dialogButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+//                mp = MediaPlayer.create(getApplicationContext(), R.raw.button_click_1);
+//                mp.start();
                 dialog.dismiss();
             }
         });
-        mp = MediaPlayer.create(this, R.raw.button_click_1);
-        mp.start();
+//        mp = MediaPlayer.create(this, R.raw.button_click_1);
+//        mp.start();
         dialog.show();
+//        timer.schedule(new TimerTask() {
+//            @Override
+//            public void run() {
+//                handler.post(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        mp = MediaPlayer.create(getApplicationContext(), R.raw.sound_whale);
+//                        mp.start();
+//                    }
+//                });
+//            }
+//        },4);
+
 
     }
 
@@ -410,17 +496,32 @@ public class StartActivity extends AppCompatActivity {
         dialog.setContentView(R.layout.activity_fish_dialog4);
         dialog.setTitle("Thông tin của cá.");
 
-        Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonOK);
+        ImageView dialogButton = (ImageView) dialog.findViewById(R.id.dialogButtonOK);
         dialogButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+//                mp = MediaPlayer.create(getApplicationContext(), R.raw.button_click_1);
+//                mp.start();
                 dialog.dismiss();
 
             }
         });
-        mp = MediaPlayer.create(this, R.raw.button_click_1);
-        mp.start();
+//        mp = MediaPlayer.create(this, R.raw.button_click_1);
+//        mp.start();
         dialog.show();
+//        timer.schedule(new TimerTask() {
+//            @Override
+//            public void run() {
+//                handler.post(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        mp = MediaPlayer.create(getApplicationContext(), R.raw.sound_pufferfish);
+//                        mp.start();
+//                    }
+//                });
+//            }
+//        },4);
+
     }
 
     public void playMusicAgain(){
@@ -429,10 +530,14 @@ public class StartActivity extends AppCompatActivity {
     }
 
     public void changeToGame(View view) {
+        mp.stop();
         MediaPlayer mp = MediaPlayer.create(this, R.raw.button_click_1);
         mp.start();
         Intent intent = new Intent(StartActivity.this, GameActivity.class);
 
         startActivity(intent);
     }
+
+
+
 }

@@ -3,21 +3,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/body"
+    android:background="@drawable/body2"
     android:orientation="vertical">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAlignment="center"
-        android:text="Đây Là Cá Gì?"
+        android:text="Đây Là Con Gì?"
+        android:fontFamily="@font/linottebold"
         android:textColor="@android:color/white"
-        android:textSize="30dp"/>
+        android:textSize="30dp"
+        android:id="@+id/fish_asking_text"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="0.3">
+                android:layout_weight="0.3"
+                android:id="@+id/gameHeaderImage">
 
                 <pl.droidsonroids.gif.GifImageView
                     android:id="@+id/gameImage"
@@ -38,26 +41,38 @@
                <LinearLayout
                    android:layout_width="match_parent"
                    android:layout_height="match_parent"
-                   android:layout_weight="0.5">
+                   android:layout_weight="0.5"
+                   android:orientation="vertical">
                    <android.support.constraint.ConstraintLayout
                        android:layout_width="match_parent"
-                       android:layout_height="match_parent">
+                       android:layout_height="match_parent"
+                       android:id="@+id/correct_setter">
                        <Button
                            android:id="@+id/answerA"
                            android:layout_width="130dp"
                            android:layout_height="60dp"
                            app:layout_constraintLeft_toLeftOf="parent"
+                           android:fontFamily="@font/linottebold"
+                           android:textColor="@android:color/white"
                            android:backgroundTint="@android:color/holo_orange_light"
-                           app:layout_constraintRight_toLeftOf="@+id/answerB"/>
+                           app:layout_constraintRight_toLeftOf="@+id/answerB"
+                           android:shadowColor="#cc8400"
+                           android:shadowRadius="2"/>
 
                        <Button
                            android:id="@+id/answerB"
                            android:layout_width="130dp"
                            android:layout_height="60dp"
                            app:layout_constraintRight_toRightOf="parent"
+                           android:fontFamily="@font/linottebold"
+                           android:textColor="@android:color/white"
+                           android:shadowColor="#cc8400"
+                           android:shadowRadius="2"
                            android:backgroundTint="@android:color/holo_orange_light"
                            app:layout_constraintLeft_toRightOf="@+id/answerA"/>
                    </android.support.constraint.ConstraintLayout>
+
+
                </LinearLayout>
 
             <LinearLayout
@@ -75,7 +90,11 @@
                         android:layout_height="60dp"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toLeftOf="@+id/answerD"
-                        android:backgroundTint="@android:color/holo_orange_light"/>
+                        android:fontFamily="@font/linottebold"
+                        android:textColor="@android:color/white"
+                        android:backgroundTint="@android:color/holo_orange_light"
+                        android:shadowColor="#cc8400"
+                        android:shadowRadius="2"/>
 
                     <Button
                         android:id="@+id/answerD"
@@ -83,7 +102,11 @@
                         android:layout_height="60dp"
                         app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintLeft_toRightOf="@+id/answerC"
-                        android:backgroundTint="@android:color/holo_orange_light"/>
+                        android:fontFamily="@font/linottebold"
+                        android:textColor="@android:color/white"
+                        android:backgroundTint="@android:color/holo_orange_light"
+                        android:shadowColor="#cc8400"
+                        android:shadowRadius="2"/>
                 </android.support.constraint.ConstraintLayout>
 
             </LinearLayout>

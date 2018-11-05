@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".StartActivity" >
+    tools:context=".StartActivity">
 
 
 
@@ -26,7 +26,7 @@
                 android:id="@+id/layoutHeader"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/header2"
+                android:background="@drawable/fhead"
                 android:orientation="vertical"
                 android:scaleX="1.4">
 
@@ -44,8 +44,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
-                    android:text="Chạm Vào Cá Ở Giữa"
-                    android:layout_marginLeft="80dp"/>
+                    android:text="Chạm vào cá ở giữa"
+                    android:layout_marginLeft="80dp"
+                    android:fontFamily="@font/linottebold"
+                    android:textSize="20dp"
+                    android:textColor="#000000"/>
 
 
 
@@ -55,9 +58,10 @@
 
             </LinearLayout>
             <pl.droidsonroids.gif.GifImageView
-                android:layout_width="60dp"
-                android:layout_height="45dp"
-                android:src="@drawable/relax_header"
+                android:id="@+id/boat"
+                android:layout_width="200dp"
+                android:layout_height="100dp"
+                android:src="@drawable/boat"
                 app:layout_constraintBottom_toBottomOf="@+id/layoutHeader"
                 app:layout_constraintRight_toLeftOf="@+id/layoutHeader"
                 app:layout_constraintLeft_toRightOf="@+id/layoutHeader"
@@ -66,7 +70,7 @@
                 android:id="@+id/layoutBody"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/body"
+                android:background="@drawable/fbody"
                 android:orientation="vertical"
                 app:layout_constraintTop_toBottomOf="@+id/layoutHeader">
                 <android.support.constraint.ConstraintLayout
@@ -93,29 +97,81 @@
 
 
 
+
+
+                    <pl.droidsonroids.gif.GifImageView
+                        android:id="@+id/fish_home_1"
+                        android:layout_width="100dp"
+                        android:layout_height="80dp"
+                        android:src="@drawable/ray_home"
+                        android:alpha="0.5"/>
+
+                    <ImageView
+                        android:id="@+id/fish_home_2"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/cartoon2"
+                        android:alpha="0.5"/>
+
+                    <ImageView
+                        android:id="@+id/fish_home_3"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/cartoon2"
+                        android:alpha="0.5"/>
+                    <pl.droidsonroids.gif.GifImageView
+                        android:id="@+id/fish_home_4"
+                        android:layout_width="100dp"
+                        android:layout_height="50dp"
+                        android:src="@drawable/diving_man"
+                        android:alpha="0.5"/>
+
+                    <ImageView
+                        android:id="@+id/fish_home_6"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/cartoon2"
+                        android:alpha="0.5"/>
+
+                    <ImageView
+                        android:id="@+id/fish_home_7"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/cartoon"
+                        android:alpha="0.5"/>
+
+
+
+
+
                     <pl.droidsonroids.gif.GifImageView
                         android:id="@+id/fish1"
-                        android:layout_width="120dp"
-                        android:layout_height="120dp"
+                        android:layout_width="150dp"
+                        android:layout_height="130dp"
                         android:src="@drawable/dolphin"
                         app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        android:onClick="showFishInfo1"/>
+                        android:onClick="showFishInfo1"
+                        android:scaleX="1.7"
+                        android:scaleY="1.7"/>
                     <pl.droidsonroids.gif.GifImageView
                         android:id="@+id/fish2"
-                        android:layout_width="210dp"
+                        android:layout_width="310dp"
                         android:layout_height="190dp"
                         android:src="@drawable/shark"
                         app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/fish1"
                         android:onClick="showFishInfo2"
+                        android:scaleX="1.2"
+                        android:scaleY="1.2"
+                        android:layout_marginTop="100dp"
                         />
                     <pl.droidsonroids.gif.GifImageView
                         android:id="@+id/fish3"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
                         android:background="@drawable/seahorse"
                         app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintLeft_toLeftOf="parent"
@@ -138,9 +194,9 @@
 
                     <pl.droidsonroids.gif.GifImageView
                         android:id="@+id/fish7"
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
-                        android:background="@drawable/octopus"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:background="@drawable/pufferfish"
                         app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/fish3"
@@ -151,40 +207,7 @@
 
 
 
-                    <pl.droidsonroids.gif.GifImageView
-                        android:id="@+id/fish_home_1"
-                        android:layout_width="100dp"
-                        android:layout_height="80dp"
-                        android:src="@drawable/ray_home"/>
 
-                    <ImageView
-                        android:id="@+id/fish_home_2"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:src="@drawable/cartoon2"/>
-
-                    <ImageView
-                        android:id="@+id/fish_home_3"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:src="@drawable/cartoon2"/>
-                    <pl.droidsonroids.gif.GifImageView
-                        android:id="@+id/fish_home_4"
-                        android:layout_width="100dp"
-                        android:layout_height="50dp"
-                        android:src="@drawable/diving_man"/>
-
-                    <ImageView
-                        android:id="@+id/fish_home_6"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:src="@drawable/cartoon2"/>
-
-                    <ImageView
-                        android:id="@+id/fish_home_7"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:src="@drawable/cartoon"/>
 
 
                 </android.support.constraint.ConstraintLayout>
@@ -200,19 +223,18 @@
     </ScrollView>
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="180dp"
+        android:layout_height="100dp"
         app:layout_constraintRight_toRightOf="@+id/scrollView"
         >
-        <Button
+        <ImageView
             android:id="@+id/btnPlayGame"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Chơi trò chơi"
-            android:textStyle="bold"
-            android:backgroundTint="@android:color/holo_orange_light"
+            android:layout_width="150dp"
+            android:layout_height="60dp"
+            android:src="@drawable/playgame"
             android:onClick="changeToGame"
             android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"
             />
     </LinearLayout>
 

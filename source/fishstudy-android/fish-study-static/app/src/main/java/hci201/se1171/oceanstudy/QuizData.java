@@ -6,7 +6,7 @@ public class QuizData {
             R.drawable.dolphin,
             R.drawable.shark,
             R.drawable.seahorse,
-            R.drawable.octopus,
+            R.drawable.pufferfish,
             R.drawable.whale
     };
 
@@ -14,7 +14,7 @@ public class QuizData {
             "cá heo",
             "cá mập",
             "cá ngựa",
-            "bạch tuộc",
+            "cá nóc",
             "cá voi"
     };
 }

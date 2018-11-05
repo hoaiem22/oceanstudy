@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_alignParentLeft="true"
     android:layout_alignParentRight="true"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingBottom="20dp">
 
 
     <ImageView
@@ -25,7 +26,9 @@
         app:layout_constraintRight_toLeftOf="parent"
         app:layout_constraintLeft_toRightOf="parent"
         android:textAlignment="center"
+        android:fontFamily="@font/linottebold"
         android:textStyle="bold"
+        android:textColor="@android:color/black"
         android:textSize="30dp"/>
 
     <TextView
@@ -37,6 +40,8 @@
         app:layout_constraintRight_toLeftOf="parent"
         app:layout_constraintLeft_toRightOf="parent"
         android:textAlignment="center"
+        android:fontFamily="@font/linottebold"
+        android:textColor="@android:color/black"
         android:textSize="20dp"/>
 
     <TextView
@@ -48,6 +53,8 @@
         app:layout_constraintRight_toLeftOf="parent"
         app:layout_constraintLeft_toRightOf="parent"
         android:textAlignment="center"
+        android:fontFamily="@font/linottebold"
+        android:textColor="@android:color/black"
         android:textSize="20dp"/>
     <TextView
         android:id="@+id/txt_fish_note"
@@ -58,16 +65,20 @@
         app:layout_constraintRight_toLeftOf="parent"
         app:layout_constraintLeft_toRightOf="parent"
         android:textAlignment="center"
-        android:textSize="20dp"/>
+        android:textColor="@android:color/black"
+        android:textSize="20dp"
+        android:fontFamily="@font/linottebold"/>
 
-    <Button
+    <ImageView
         android:id="@+id/dialogButtonOK"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Tìm hiểu tiếp "
+        android:layout_width="170dp"
+        android:layout_height="50dp"
+        android:src="@drawable/keepgoing"
         app:layout_constraintRight_toLeftOf="parent"
         app:layout_constraintLeft_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/txt_fish_note"
+        android:layout_marginTop="20dp"
+
         />
 
 
