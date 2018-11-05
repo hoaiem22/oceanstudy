@@ -10,7 +10,9 @@ import org.springframework.stereotype.Service;
 
 import fpt.oceanstudy.biz.FishBiz;
 import fpt.oceanstudy.entity.OsFish;
+import fpt.oceanstudy.entity.OsFishStatus;
 import fpt.oceanstudy.repository.FishRepository;
+import fpt.oceanstudy.repository.FishStatusRepository;
 
 @Service
 public class FishBizImpl implements FishBiz {
@@ -20,8 +22,21 @@ public class FishBizImpl implements FishBiz {
     @Autowired
     FishRepository fishRepository;
     
+    @Autowired
+    FishStatusRepository fishStatusRepository;
+    
     @Override
     public boolean updateFish(Iterable<OsFish> listFish, List<Integer> tobeDeletedIds) {
+        //Update foreign keys
+        OsFishStatus status;
+        for (OsFish osFish : listFish) {
+            if(osFish.getStatus().getId() == null) {
+                status = fishStatusRepository.findByName(osFish.getStatus().getStatus());
+                osFish.setStatus(status);
+                LOG.info("Set Status: " + fishStatusRepository.findByName(osFish.getStatus().getStatus()));
+            }
+        }
+        
         if (tobeDeletedIds != null) {
             tobeDeletedIds.forEach(deleteId -> {
                 fishRepository.deleteById(deleteId);
