@@ -8,6 +8,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 import fpt.oceanstudy.entity.OsFish;
+import fpt.oceanstudy.entity.OsFishStatus;
 import fpt.oceanstudy.model.FishModel;
 import mksgroup.java.common.BeanUtil;
 
@@ -28,7 +29,15 @@ public class AppUtil {
         LOG.info("role data=" + data.getData());
         List<OsFish> reportListRole = (List<OsFish>) BeanUtil.getDataList(data.getData(), HEADERS,
                 OsFish.class, SKIP_EMPTYROW, "createdbyUsername", username, "created");
-
+        
+        for (OsFish osFish : reportListRole) {
+            if (osFish.getStatus() == null) {
+                LOG.info("index:" + reportListRole.indexOf(osFish));
+                // report.setTeam(teamRepository.findByName(teamName));
+                osFish.setStatus(new OsFishStatus(null,
+                        (String) ((List<Object[]>) data.getData().get(reportListRole.indexOf(osFish))).toArray()[9]));
+            }
+        }
         return reportListRole;
     }
 }

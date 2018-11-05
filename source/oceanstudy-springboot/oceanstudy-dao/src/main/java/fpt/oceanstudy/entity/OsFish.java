@@ -12,6 +12,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -60,6 +62,9 @@ public class OsFish implements Serializable {
     private String img;
     @Column(name = "video", length = 250)
     private String video;
+    @JoinColumn(name = "status", referencedColumnName = "id")
+    @ManyToOne
+    private OsFishStatus status;
 
     public OsFish() {
     }
@@ -138,6 +143,14 @@ public class OsFish implements Serializable {
 
     public void setVideo(String video) {
         this.video = video;
+    }
+
+    public OsFishStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(OsFishStatus status) {
+        this.status = status;
     }
 
     @Override

@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import fpt.oceanstudy.biz.FishBiz;
+import fpt.oceanstudy.dto.Fish;
 import fpt.oceanstudy.entity.OsFish;
 import fpt.oceanstudy.model.FishModel;
 import fpt.oceanstudy.repository.FishRepository;
@@ -38,7 +39,7 @@ public class HomeController {
     
     @GetMapping({"/","/soon"})
     public String home() {
-        return "soon";
+        return "login";
     }
     
     @GetMapping("/login")
@@ -54,14 +55,14 @@ public class HomeController {
     
     @ResponseBody
     @GetMapping("/loadFish")
-    public List<OsFish> loadFish() {
-        return (List<OsFish>) fishRepository.findAll();
+    public List<Object[]> loadFish() {
+        return (List<Object[]>) fishRepository.sortFishByDeep();
     }
     
     
     @PostMapping("/saveFish")
     @ResponseBody
-    public List<OsFish> saveTeam(@Valid @RequestBody FishModel data, Errors errors,
+    public List<Object[]> saveTeam(@Valid @RequestBody FishModel data, Errors errors,
             HttpServletRequest request) {
         LOG.info("save Fish....");
 
@@ -79,7 +80,7 @@ public class HomeController {
         }
 
         // Reload data from db
-        List<OsFish> fish = (List<OsFish>) fishRepository.findAll();
+        List<Object[]> fish = (List<Object[]>) fishRepository.sortFishByDeep();
 
         return fish;
 
