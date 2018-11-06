@@ -31,9 +31,10 @@ public class FishController {
         return (List<OsFish>) fishRepository.findAll();
     }
     
+    
     @ResponseBody
-    @GetMapping("/getAllFishActiveAsc")
-    public List<Object[]> getAllFishDesc() {
-        return (List<Object[]>) fishRepository.sortFishByDeep();
+    @GetMapping("/getListActiveAsc")
+    public List<OsFish> getAllListFishDesc() {
+        return (List<OsFish>) fishRepository.sortFishByDeepASc();
     }
 }

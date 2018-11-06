@@ -55,14 +55,14 @@ public class HomeController {
     
     @ResponseBody
     @GetMapping("/loadFish")
-    public List<Object[]> loadFish() {
-        return (List<Object[]>) fishRepository.sortFishByDeep();
+    public List<OsFish> loadFish() {
+        return (List<OsFish>) fishRepository.sortFishByDeepASc();
     }
     
     
     @PostMapping("/saveFish")
     @ResponseBody
-    public List<Object[]> saveTeam(@Valid @RequestBody FishModel data, Errors errors,
+    public List<OsFish> saveTeam(@Valid @RequestBody FishModel data, Errors errors,
             HttpServletRequest request) {
         LOG.info("save Fish....");
 
@@ -80,7 +80,7 @@ public class HomeController {
         }
 
         // Reload data from db
-        List<Object[]> fish = (List<Object[]>) fishRepository.sortFishByDeep();
+        List<OsFish> fish = fishRepository.sortFishByDeepASc();
 
         return fish;
 
