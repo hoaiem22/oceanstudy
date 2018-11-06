@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -23,7 +24,8 @@ public class MainActivity extends AppCompatActivity {
     private int screenHeight;
     private int screenWidth;
 
-    Button btnStart;
+    ImageView btnStart;
+
 
     private ImageView fish_home_1;
     private ImageView fish_home_2;
@@ -64,8 +66,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         FishAnimation();
         BubbleAnimation();
-        Intent intent = new Intent(this, BackgroundMusicService.class);
-        startService(intent);
+        MediaPlayer mp = MediaPlayer.create(this, R.raw.funny_background);
+        mp.start();
+
+
+
+
     }
 
 
@@ -73,6 +79,8 @@ public class MainActivity extends AppCompatActivity {
     public void changeToStart(View view){
         MediaPlayer mp = MediaPlayer.create(this, R.raw.button_click_1);
         mp.start();
+
+
         Intent intent = new Intent(this, StartActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
@@ -94,7 +102,10 @@ public class MainActivity extends AppCompatActivity {
         fish_home_1.setAnimation(translateYAnimation);
         fish_home_2.setAnimation(translateYAnimation);
         fish_home_3.setAnimation(translateYAnimation);
-        btnStart.setAnimation(translateYAnimation);
+
+
+        Animation scaleAnim = AnimationUtils.loadAnimation(this, R.anim.scale);
+        btnStart.setAnimation(scaleAnim);
 
 
 
@@ -272,14 +283,18 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        Intent intent = new Intent(this, BackgroundMusicService.class);
-        stopService(intent);
+
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        Intent intent = new Intent(this, BackgroundMusicService.class);
-        startService(intent);
+
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
     }
 }

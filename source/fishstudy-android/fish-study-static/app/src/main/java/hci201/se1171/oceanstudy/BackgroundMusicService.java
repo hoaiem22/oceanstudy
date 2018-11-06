@@ -34,7 +34,7 @@ public class BackgroundMusicService extends Service{
     @Override
     public int onStartCommand(Intent intent, int flags, int startId){
 
-        mp_object.setLooping(true);
+
         mp_object.start();
 
         return 0;

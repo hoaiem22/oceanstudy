@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_alignParentLeft="true"
     android:layout_alignParentRight="true"
+    android:paddingBottom="20dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
@@ -11,7 +12,7 @@
         android:id="@+id/image_fish_info"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:src="@drawable/optopus_info"
+        android:src="@drawable/pufferfish_info"
         app:layout_constraintRight_toLeftOf="parent"
         app:layout_constraintLeft_toRightOf="parent"
         />
@@ -20,11 +21,13 @@
         android:id="@+id/txt_fish_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="BẠCH TUỘC"
+        android:text="CÁ NÓC"
         app:layout_constraintTop_toBottomOf="@+id/image_fish_info"
         app:layout_constraintRight_toLeftOf="parent"
         app:layout_constraintLeft_toRightOf="parent"
+        android:fontFamily="@font/linottebold"
         android:textAlignment="center"
+        android:textColor="@android:color/black"
         android:textStyle="bold"
         android:textSize="30dp"/>
 
@@ -32,10 +35,12 @@
         android:id="@+id/txt_fish_info_english"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Tên tiếng anh là: OCTOPUS."
+        android:text="Tên tiếng anh là: PUFFER FISH."
         app:layout_constraintTop_toBottomOf="@+id/txt_fish_name"
         app:layout_constraintRight_toLeftOf="parent"
         app:layout_constraintLeft_toRightOf="parent"
+        android:fontFamily="@font/linottebold"
+        android:textColor="@android:color/black"
         android:textAlignment="center"
         android:textSize="20dp"/>
 
@@ -43,31 +48,36 @@
         android:id="@+id/txt_fish_age"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Độ tuổi trung bình của chúng là từ 3 đến 5 tuổi."
+        android:text="Độ tuổi trung bình của chúng là khoảng 10 tuổi."
         app:layout_constraintTop_toBottomOf="@+id/txt_fish_info_english"
         app:layout_constraintRight_toLeftOf="parent"
         app:layout_constraintLeft_toRightOf="parent"
+        android:fontFamily="@font/linottebold"
+        android:textColor="@android:color/black"
         android:textAlignment="center"
         android:textSize="20dp"/>
     <TextView
         android:id="@+id/txt_fish_note"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="(Bạch Tuộc có đến 3 trái tim nhé.)"
+        android:text="Khi bị đe dọa chúng sẽ hút nước vào để phồng người lên.(Cá nóc rất độc)"
         app:layout_constraintTop_toBottomOf="@+id/txt_fish_age"
         app:layout_constraintRight_toLeftOf="parent"
         app:layout_constraintLeft_toRightOf="parent"
+        android:fontFamily="@font/linottebold"
+        android:textColor="@android:color/black"
         android:textAlignment="center"
         android:textSize="20dp"/>
 
-    <Button
+    <ImageView
         android:id="@+id/dialogButtonOK"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Tìm hiểu tiếp "
+        android:layout_width="170dp"
+        android:layout_height="50dp"
+        android:src="@drawable/keepgoing"
         app:layout_constraintRight_toLeftOf="parent"
         app:layout_constraintLeft_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_fish_note"
+        app:layout_constraintTop_toBottomOf="@id/txt_fish_note"
+        android:layout_marginTop="20dp"
         />
 
 

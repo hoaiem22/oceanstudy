@@ -28,7 +28,7 @@
             <!-- </intent-filter> -->
         </activity>
 
-        <service android:name=".BackgroundMusicService">
+        <service android:enabled="true" android:name=".BackgroundMusicService">
 
             <!-- <intent-filter> -->
             <!-- <action android:name="android.intent.action.MAIN" /> -->
