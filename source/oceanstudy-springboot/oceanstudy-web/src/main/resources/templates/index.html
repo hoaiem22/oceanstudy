@@ -80,10 +80,11 @@
 			beforeRemoveRow : function(index, amount) {
 				// Support to submit deleted id into server
 				var lastIndex = index + amount;
+				console.log("index + amount", index + amount)
 				var i;
 				for (i = index; i < lastIndex; i++) {
 					var deletedUnit = dataUnits[i];
-					var deletedId = deletedUnit[0];
+					var deletedId = deletedUnit.id;
 					console.log("deleteUnit" + deletedUnit + "deleteId = "
 							+ deletedId);
 					if (deletedId) {
