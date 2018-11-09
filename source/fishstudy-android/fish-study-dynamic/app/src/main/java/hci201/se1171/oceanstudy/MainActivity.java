@@ -3,10 +3,8 @@ package hci201.se1171.oceanstudy;
 import android.content.Intent;
 import android.graphics.Point;
 import android.media.MediaPlayer;
-import android.os.Handler;
-import android.support.annotation.Nullable;
-
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Display;
 import android.view.View;
@@ -16,12 +14,11 @@ import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class MainActivity extends AppCompatActivity{
+public class MainActivity extends AppCompatActivity {
     private int screenHeight;
     private int screenWidth;
     Button btnStart;
@@ -56,6 +53,8 @@ public class MainActivity extends AppCompatActivity{
 
     private Handler handler = new Handler();
     private Timer timer = new Timer();
+    MediaPlayer mp;
+    MediaPlayer mpButtonClick;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,28 +64,30 @@ public class MainActivity extends AppCompatActivity{
         setContentView(R.layout.activity_main);
         FishAnimation();
         BubbleAnimation();
-        Intent intent = new Intent(this, BackgroundMusicService.class);
-        startService(intent);
-
+//        Intent intent = new Intent(this, BackgroundMusicService.class);
+//        startService(intent);
+        mp = MediaPlayer.create(getApplicationContext(), R.raw.funny_background);
+        mpButtonClick = MediaPlayer.create(this, R.raw.button_click_1);
+        mp.start();
     }
 
-    public void changeToStart(View view){
-        MediaPlayer mp = MediaPlayer.create(this, R.raw.button_click_1);
-        mp.start();
+
+    public void changeToStart(View view) {
+        mpButtonClick.start();
+        stopPlaying(mp);
         Intent intent = new Intent(this, StartActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
     }
 
 
-
-    public void FishAnimation(){
+    public void FishAnimation() {
 
         fish_home_1 = findViewById(R.id.fish_home_1);
-        fish_home_2 =  findViewById(R.id.fish_home_2);
+        fish_home_2 = findViewById(R.id.fish_home_2);
         fish_home_3 = findViewById(R.id.fish_home_3);
 
-       btnStart = findViewById(R.id.btn_start);
+        btnStart = findViewById(R.id.btn_start);
 
         TranslateAnimation translateYAnimation = new TranslateAnimation(0f, 0f, 0f, -15f);
         translateYAnimation.setDuration(1000);
@@ -96,7 +97,6 @@ public class MainActivity extends AppCompatActivity{
         fish_home_2.setAnimation(translateYAnimation);
         fish_home_3.setAnimation(translateYAnimation);
         btnStart.setAnimation(translateYAnimation);
-
 
 
         //get screen size
@@ -129,13 +129,13 @@ public class MainActivity extends AppCompatActivity{
                     }
                 });
             }
-        },0,20);
+        }, 0, 20);
 
 
     }
 
 
-    public void BubbleAnimation(){
+    public void BubbleAnimation() {
         bubble1 = findViewById(R.id.bubble1);
         bubble2 = findViewById(R.id.bubble2);
         bubble3 = findViewById(R.id.bubble3);
@@ -170,7 +170,6 @@ public class MainActivity extends AppCompatActivity{
         bubble4.setY(-80.0f);
 
 
-
         // Start timer
 
         timer.schedule(new TimerTask() {
@@ -184,13 +183,12 @@ public class MainActivity extends AppCompatActivity{
                     }
                 });
             }
-        },0,20);
+        }, 0, 20);
 
     }
 
 
-
-    public void changePostFish(){
+    public void changePostFish() {
 
 //        fish_home_1_Y -= 7;
 //        if (fish_home_1.getY() + fish_home_1.getHeight() < 0){
@@ -202,17 +200,17 @@ public class MainActivity extends AppCompatActivity{
 
 
         fish_home_1_X -= 5;
-        if (fish_home_1.getX() + fish_home_1.getWidth() < 0){
-            fish_home_1_Y = (float)Math.floor(Math.random() * (screenHeight - fish_home_1.getHeight()));
+        if (fish_home_1.getX() + fish_home_1.getWidth() < 0) {
+            fish_home_1_Y = (float) Math.floor(Math.random() * (screenHeight - fish_home_1.getHeight()));
             fish_home_1_X = screenWidth + 100.0f;
         }
         fish_home_1.setX(fish_home_1_X);
         fish_home_1.setY(fish_home_1_Y);
 
         fish_home_2_X += 5;
-        if (fish_home_2.getX() > screenWidth){
+        if (fish_home_2.getX() > screenWidth) {
             fish_home_2_X = -100.0f;
-            fish_home_2_Y = (float)Math.floor(Math.random() * (screenHeight - fish_home_2.getHeight()));
+            fish_home_2_Y = (float) Math.floor(Math.random() * (screenHeight - fish_home_2.getHeight()));
 
         }
         fish_home_2.setX(fish_home_2_X);
@@ -220,24 +218,23 @@ public class MainActivity extends AppCompatActivity{
 
 
         fish_home_3_X += 8;
-        if (fish_home_3.getX() > screenWidth){
+        if (fish_home_3.getX() > screenWidth) {
             fish_home_3_X = -100.0f;
-            fish_home_3_Y = (float)Math.floor(Math.random() * (screenHeight - fish_home_3.getHeight()));
+            fish_home_3_Y = (float) Math.floor(Math.random() * (screenHeight - fish_home_3.getHeight()));
 
         }
         fish_home_3.setX(fish_home_3_X);
         fish_home_3.setY(fish_home_3_Y);
 
 
-
     }
 
 
-    public void changePostBubble(){
+    public void changePostBubble() {
 
         bubble1_Y -= 10;
-        if (bubble1.getY() + bubble1.getHeight() < 0){
-            bubble1_X = (float)Math.floor(Math.random() * (screenWidth - bubble1.getWidth()));
+        if (bubble1.getY() + bubble1.getHeight() < 0) {
+            bubble1_X = (float) Math.floor(Math.random() * (screenWidth - bubble1.getWidth()));
             bubble1_Y = screenHeight + 100.0f;
         }
         bubble1.setX(bubble1_X);
@@ -245,30 +242,38 @@ public class MainActivity extends AppCompatActivity{
 
 
         bubble2_Y -= 10;
-        if (bubble2.getY() + bubble2.getHeight() < 0){
-            bubble2_X = (float)Math.floor(Math.random() * (screenWidth - bubble2.getWidth()));
+        if (bubble2.getY() + bubble2.getHeight() < 0) {
+            bubble2_X = (float) Math.floor(Math.random() * (screenWidth - bubble2.getWidth()));
             bubble2_Y = screenHeight + 100.0f;
         }
         bubble2.setX(bubble2_X);
         bubble2.setY(bubble2_Y);
 
         bubble3_Y -= 10;
-        if ( bubble3.getY() +  bubble3.getHeight() < 0){
-            bubble3_X = (float)Math.floor(Math.random() * (screenWidth -  bubble3.getWidth()));
+        if (bubble3.getY() + bubble3.getHeight() < 0) {
+            bubble3_X = (float) Math.floor(Math.random() * (screenWidth - bubble3.getWidth()));
             bubble3_Y = screenHeight + 100.0f;
         }
-        bubble3.setX( bubble3_X);
-        bubble3.setY( bubble3_Y);
+        bubble3.setX(bubble3_X);
+        bubble3.setY(bubble3_Y);
 
 
         bubble4_Y -= 10;
-        if ( bubble4.getY() +  bubble4.getHeight() < 0){
-            bubble4_X = (float)Math.floor(Math.random() * (screenWidth -  bubble4.getWidth()));
+        if (bubble4.getY() + bubble4.getHeight() < 0) {
+            bubble4_X = (float) Math.floor(Math.random() * (screenWidth - bubble4.getWidth()));
             bubble4_Y = screenHeight + 100.0f;
         }
         bubble4.setX(bubble4_X);
         bubble4.setY(bubble4_Y);
 
+    }
+
+    private void stopPlaying(MediaPlayer mp) {
+        if (mp != null) {
+            mp.stop();
+            mp.release();
+            mp = null;
+        }
     }
 
 }

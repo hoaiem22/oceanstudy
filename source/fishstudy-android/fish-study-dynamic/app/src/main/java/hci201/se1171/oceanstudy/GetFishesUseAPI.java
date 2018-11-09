@@ -62,7 +62,11 @@ public class GetFishesUseAPI extends AsyncTask<Object, String, String>  {
             url = (String) objects[0];
             URL myUrl = new URL(url);
             HttpURLConnection httpUrlConnection = (HttpURLConnection) myUrl.openConnection();
+            httpUrlConnection.setConnectTimeout(3000);
+            httpUrlConnection.setReadTimeout(3000);
+            Log.i("Responseeee", "Codeeeeeee: " + httpUrlConnection.getResponseCode());
             httpUrlConnection.connect();
+
             is = httpUrlConnection.getInputStream();
             br = new BufferedReader(new InputStreamReader(is));
             String line = "";
@@ -71,10 +75,12 @@ public class GetFishesUseAPI extends AsyncTask<Object, String, String>  {
                 sb.append(line);
             }
             data = sb.toString();
-        } catch (MalformedURLException e) {
+        } catch (Exception e) {
+            if (e.toString().contains("failed to connect to")){
+                Log.i("FAILLLLL", "FAILLLLLLL");
+            }
             e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+            return "Could not connect to server";
         }
         return data;
     }
