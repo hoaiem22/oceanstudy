@@ -534,7 +534,6 @@ public class StartActivity extends AppCompatActivity {
         MediaPlayer mp = MediaPlayer.create(this, R.raw.button_click_1);
         mp.start();
         Intent intent = new Intent(StartActivity.this, GameActivity.class);
-
         startActivity(intent);
     }
 
