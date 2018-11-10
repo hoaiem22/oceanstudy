@@ -12,8 +12,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -36,7 +34,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "OsFish.findByDeep", query = "SELECT o FROM OsFish o WHERE o.deep = :deep")
     , @NamedQuery(name = "OsFish.findByAge", query = "SELECT o FROM OsFish o WHERE o.age = :age")
     , @NamedQuery(name = "OsFish.findByImg", query = "SELECT o FROM OsFish o WHERE o.img = :img")
-    , @NamedQuery(name = "OsFish.findByVideo", query = "SELECT o FROM OsFish o WHERE o.video = :video")})
+    , @NamedQuery(name = "OsFish.findByVideo", query = "SELECT o FROM OsFish o WHERE o.video = :video")
+    , @NamedQuery(name = "OsFish.findByStatus", query = "SELECT o FROM OsFish o WHERE o.status = :status")})
 public class OsFish implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -62,9 +61,8 @@ public class OsFish implements Serializable {
     private String img;
     @Column(name = "video", length = 250)
     private String video;
-    @JoinColumn(name = "status", referencedColumnName = "id")
-    @ManyToOne
-    private OsFishStatus status;
+    @Column(name = "status", length = 50)
+    private String status;
 
     public OsFish() {
     }
@@ -145,11 +143,11 @@ public class OsFish implements Serializable {
         this.video = video;
     }
 
-    public OsFishStatus getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(OsFishStatus status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 

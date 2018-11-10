@@ -16,8 +16,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-
-
             <LinearLayout
                 android:id="@+id/layoutHeader"
                 android:layout_width="match_parent"
@@ -121,18 +119,18 @@
                     android:id="@+id/bubble1"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:background="@drawable/ic_image2vector"/>
+           />
 
                 <ImageView
                     android:id="@+id/bubble2"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:background="@drawable/ic_image2vector"/>
+            />
                 <ImageView
                     android:id="@+id/bubble3"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:background="@drawable/ic_image2vector"/>
+      />
                 </LinearLayout>
 
 

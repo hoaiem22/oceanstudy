@@ -570,7 +570,6 @@ public class StartActivity extends AppCompatActivity {
 //        mp.start();
 
         Intent intent = new Intent(StartActivity.this, GameActivity.class);
-
         startActivity(intent);
     }
 

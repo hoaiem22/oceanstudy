@@ -44,45 +44,47 @@
             manualRowResize: true,
             contextMenu: ['row_below', 'remove_row'],
 			columns : [{
-				data : '0',
+				data : 'id',
 				readOnly : true,
 
 			}, {
-				data : '1',
+				data : 'name',
 
 			}, {
-				data : '2',
+				data : 'weight',
 
 			}, {
-				data : '3',
+				data : 'length',
 
 			}, {
-				data : '4',
+				data : 'height',
 
 			}, {
-				data : '5',
+				data : 'deep',
 
 			}, {
-				data : '6',
+				data : 'age',
 
 			}, {
-				data : '7',
+				data : 'img',
 
 			}, {
-				data : '8',
+				data : 'video',
 
 			},{
-				data: '9',
+				data: 'status',
 				type: 'dropdown',
                 source: status,
 			}],
+			
 			beforeRemoveRow : function(index, amount) {
 				// Support to submit deleted id into server
 				var lastIndex = index + amount;
+				console.log("index + amount", index + amount)
 				var i;
 				for (i = index; i < lastIndex; i++) {
 					var deletedUnit = dataUnits[i];
-					var deletedId = deletedUnit[0];
+					var deletedId = deletedUnit.id;
 					console.log("deleteUnit" + deletedUnit + "deleteId = "
 							+ deletedId);
 					if (deletedId) {

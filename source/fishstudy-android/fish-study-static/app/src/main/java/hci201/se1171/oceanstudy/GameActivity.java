@@ -36,7 +36,6 @@ import java.util.TimerTask;
 
 public class GameActivity extends AppCompatActivity {
 
-
     ImageView imgGame_fish;
     Button btn_answer1,btn_answer2,btn_answer3,btn_answer4;
 

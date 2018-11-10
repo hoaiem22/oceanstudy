@@ -51,23 +51,23 @@
             android:id="@+id/bubble1"
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:background="@drawable/ic_image2vector"/>
+            />
 
         <ImageView
             android:id="@+id/bubble2"
             android:layout_width="100dp"
             android:layout_height="150dp"
-            android:background="@drawable/ic_image2vector"/>
+            />
         <ImageView
             android:id="@+id/bubble3"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:background="@drawable/ic_image2vector"/>
+            />
         <ImageView
             android:id="@+id/bubble4"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:background="@drawable/ic_image2vector"/>
+            />
 
 
 
