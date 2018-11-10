@@ -101,7 +101,7 @@ public class StartActivity extends AppCompatActivity {
         },0,20);
 
 
-        StringBuilder stringBuilder = new StringBuilder("http://192.168.1.138:8090/fish/getAllFishAsc");
+        StringBuilder stringBuilder = new StringBuilder("http://192.168.1.44:8090/fish/getAllFishAActiveAsc");
         String url = stringBuilder.toString();
 
         Object dataTransfer[] = new Object[1];

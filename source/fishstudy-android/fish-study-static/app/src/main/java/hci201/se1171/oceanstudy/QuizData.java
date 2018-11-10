@@ -5,7 +5,7 @@ public class QuizData {
     Integer[] fishes = {
             R.drawable.dolphin,
             R.drawable.shark,
-            R.drawable.seahorse,
+            R.drawable.seahorse_gif,
             R.drawable.pufferfish,
             R.drawable.whale
     };

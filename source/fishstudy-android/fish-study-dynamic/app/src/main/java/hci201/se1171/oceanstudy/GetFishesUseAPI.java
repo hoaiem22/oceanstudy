@@ -93,11 +93,17 @@ public class GetFishesUseAPI extends AsyncTask<Object, String, String> {
                     }
                 });
 
-
+                context.getApplicationContext().getFilesDir();
                 linearLayout.addView(imageView, i);
 
 
             }
+
+
+
+
+
+
 //                Toast.makeText(this.context, jsonArray + " " , Toast.LENGTH_LONG).show();
         } catch (JSONException e) {
             e.printStackTrace();

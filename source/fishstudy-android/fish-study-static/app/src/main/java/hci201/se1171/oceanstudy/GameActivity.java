@@ -53,6 +53,7 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
+
         imgGame_fish = findViewById(R.id.gameImage);
 
         btn_answer1 = findViewById(R.id.answerA);
@@ -67,8 +68,8 @@ public class GameActivity extends AppCompatActivity {
         btn_answer3.setAnimation(scaleAnim);
         btn_answer4.setAnimation(scaleAnim);
 
-        MediaPlayer mp = MediaPlayer.create(this, R.raw.musicingame);
-        mp.start();
+//        MediaPlayer mp = MediaPlayer.create(this, R.raw.musicingame);
+//        mp.start();
 
         list = new ArrayList<>();
         //Add all fishes to list;
@@ -85,8 +86,8 @@ public class GameActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(btn_answer1.getText().toString().equalsIgnoreCase(list.get(turn - 1).getName())){
-                    MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.correct);
-                    mp.start();
+//                    MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.correct);
+//                    mp.start();
                     setCorrect();
 
 //                    new Timer().schedule(new TimerTask() {
@@ -96,9 +97,6 @@ public class GameActivity extends AppCompatActivity {
 //
 //                        }
 //                    }, 2000);
-
-
-
 
                 }else{
 //                    MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.wrong);
@@ -113,8 +111,8 @@ public class GameActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(btn_answer2.getText().toString().equalsIgnoreCase(list.get(turn - 1).getName())){
-                    MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.correct);
-                    mp.start();
+//                    MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.correct);
+//                    mp.start();
 
 
                     setCorrect();
@@ -135,8 +133,8 @@ public class GameActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(btn_answer3.getText().toString().equalsIgnoreCase(list.get(turn - 1).getName())){
-                    MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.correct);
-                    mp.start();
+//                    MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.correct);
+//                    mp.start();
 
 
                     setCorrect();
@@ -156,8 +154,8 @@ public class GameActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(btn_answer4.getText().toString().equalsIgnoreCase(list.get(turn - 1).getName())){
-                    MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.correct);
-                    mp.start();
+//                    MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.correct);
+//                    mp.start();
 
                    setCorrect();
 
@@ -229,16 +227,16 @@ public class GameActivity extends AppCompatActivity {
     }
 
     public void setWrong(String name){
+        MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.oh);
+        mp.start();
         final TextView fish_asking_text = (TextView) findViewById(R.id.fish_asking_text);
         final LinearLayout linearLayout = (LinearLayout) findViewById(R.id.gameHeaderImage);
         imgGame_fish.setImageResource(R.drawable.wrong_spong);
-        imgGame_fish.getLayoutParams().height = 300;
-        imgGame_fish.getLayoutParams().width = 300;
+        imgGame_fish.getLayoutParams().height = 400;
+        imgGame_fish.getLayoutParams().width = 400;
+
         imgGame_fish.requestLayout();
-        MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.oh);
 
-
-        mp.start();
         btn_answer1.setVisibility(View.GONE);
         btn_answer2.setVisibility(View.GONE);
         btn_answer3.setVisibility(View.GONE);
@@ -252,7 +250,8 @@ public class GameActivity extends AppCompatActivity {
         btn_answer4.clearAnimation();
 
 
-        linearLayout.setPadding(100,100,0,0);
+        linearLayout.setPadding(0,200,0,0);
+
 
 
 
@@ -272,6 +271,9 @@ public class GameActivity extends AppCompatActivity {
                             imgGame_fish.getLayoutParams().height = LinearLayout.LayoutParams.MATCH_PARENT;
                             imgGame_fish.getLayoutParams().width = LinearLayout.LayoutParams.MATCH_PARENT;
                             linearLayout.setPadding(0,0,0,0);
+
+                            imgGame_fish.requestLayout();
+                            linearLayout.requestLayout();
 
                             Animation scaleAnim = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.scale);
                             btn_answer1.setAnimation(scaleAnim);
@@ -294,7 +296,7 @@ public class GameActivity extends AppCompatActivity {
 
 
     public void openDoneAskingDialog(){
-        final Dialog dialog = new Dialog(this);
+        final Dialog dialog = new Dialog(GameActivity.this);
         dialog.setContentView(R.layout.activity_ask_user);
         final TextView fish_asking_text = (TextView) findViewById(R.id.fish_asking_text);
         ImageView btn_no = (ImageView) dialog.findViewById(R.id.btnNo);
@@ -307,11 +309,11 @@ public class GameActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
-                Intent intent1 = new Intent(GameActivity.this, BackgroundMusicService.class);
-                stopService(intent1);
-
-                Intent intent2 = new Intent(GameActivity.this, BackgroundMusicService.class);
-                startService(intent2);
+//                Intent intent1 = new Intent(GameActivity.this, BackgroundMusicService.class);
+//                stopService(intent1);
+//
+//                Intent intent2 = new Intent(GameActivity.this, BackgroundMusicService.class);
+//                startService(intent2);
                 Intent intent = new Intent(GameActivity.this, StartActivity.class);
 
                 startActivity(intent);
@@ -332,6 +334,8 @@ public class GameActivity extends AppCompatActivity {
                 fish_asking_text.setText("Đây là cá gì?");
                 turn = 1;
                 newQuestion(turn);
+//                MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.musicingame);
+//                mp.start();
 
             }
         });
@@ -348,8 +352,8 @@ public class GameActivity extends AppCompatActivity {
         });
 
 
-        MediaPlayer mp = MediaPlayer.create(this, R.raw.button_click_1);
-        mp.start();
+//        MediaPlayer mp = MediaPlayer.create(this, R.raw.button_click_1);
+//        mp.start();
         dialog.show();
     }
 
@@ -389,8 +393,8 @@ public class GameActivity extends AppCompatActivity {
             }
         });
 
-        MediaPlayer mp = MediaPlayer.create(this, R.raw.button_click_1);
-        mp.start();
+//        MediaPlayer mp = MediaPlayer.create(this, R.raw.button_click_1);
+//        mp.start();
         dialog.show();
     }
 

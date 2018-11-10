@@ -17,6 +17,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
 import android.view.animation.AnimationUtils;
 import android.view.animation.TranslateAnimation;
 import android.widget.Button;
@@ -36,7 +37,7 @@ public class StartActivity extends AppCompatActivity {
 
     ImageView btnPlayGame;
     TextView txtHuongDan;
-    ImageView arrow;
+    ImageView poiting;
 
     ImageView boat;
 
@@ -89,12 +90,27 @@ public class StartActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.start_activity);
 
-        mp = MediaPlayer.create(getApplicationContext(), R.raw.funny_background);
-        mp.start();
+//        mp = MediaPlayer.create(getApplicationContext(), R.raw.funny_background);
+//        mp.start();
 
 
         FishAnimation();
         BubbleAnimation();
+
+
+
+        AnimationSet set = new AnimationSet(true);
+        Animation trAnimation = new TranslateAnimation(0, 10, 0, 0);
+        trAnimation.setDuration(400);
+
+        trAnimation.setRepeatMode(Animation.REVERSE); /*---------> This will make the view translate in the reverse direction*/
+        trAnimation.setRepeatCount(20);
+        set.addAnimation(trAnimation);
+        Animation anim = new AlphaAnimation(1.0f, 0.0f);
+        anim.setDuration(10000);
+        set.addAnimation(anim);
+
+        poiting.startAnimation(set);
 
 //        StringBuilder stringBuilder = new StringBuilder("http://192.168.85.2:8080/getAllFish");
 //        String url = stringBuilder.toString();
@@ -114,8 +130,8 @@ public class StartActivity extends AppCompatActivity {
         fish4 =  findViewById(R.id.fish4);
 
         btnPlayGame = findViewById(R.id.btnPlayGame);
-        txtHuongDan = findViewById(R.id.text_huongdan);
-        arrow = findViewById(R.id.arrow_down);
+//        txtHuongDan = findViewById(R.id.text_huongdan);
+        poiting = findViewById(R.id.pointing);
 
         fish_home_1 = findViewById(R.id.fish_home_1);
         fish_home_2 =  findViewById(R.id.fish_home_2);
@@ -127,12 +143,7 @@ public class StartActivity extends AppCompatActivity {
 
         boat = findViewById(R.id.boat);
 
-        Animation fadeOut = new AlphaAnimation(1, 0);
-        fadeOut.setDuration(15000);
-        arrow.setAnimation(fadeOut);
-        txtHuongDan.setAnimation(fadeOut);
-        arrow.setVisibility(View.INVISIBLE);
-        txtHuongDan.setVisibility(View.INVISIBLE);
+
 
 
         TranslateAnimation translateYAnimation = new TranslateAnimation(0f, 0f, 0f, -10f);
@@ -156,6 +167,16 @@ public class StartActivity extends AppCompatActivity {
 
         Animation scaleAnim = AnimationUtils.loadAnimation(this, R.anim.scale);
         btnPlayGame.setAnimation(scaleAnim);
+
+
+        Animation fadeOut = new AlphaAnimation(1, 0);
+        fadeOut.setDuration(8000);
+
+
+//        poiting.setAnimation(fadeOut);
+////        txtHuongDan.setAnimation(fadeOut);
+//        poiting.setVisibility(View.INVISIBLE);
+////        txtHuongDan.setVisibility(View.INVISIBLE);
 
 
 
@@ -202,6 +223,19 @@ public class StartActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         changePostFish();
+                    }
+                });
+            }
+        },0,20);
+
+
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        poiting.setVisibility(View.INVISIBLE);
                     }
                 });
             }
@@ -358,14 +392,14 @@ public class StartActivity extends AppCompatActivity {
         dialogButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mp = MediaPlayer.create(getApplicationContext(), R.raw.button_click_1);
-                mp.start();
+//                mp = MediaPlayer.create(getApplicationContext(), R.raw.button_click_1);
+//                mp.start();
                 dialog.dismiss();
 
             }
         });
-        mp = MediaPlayer.create(this, R.raw.button_click_1);
-        mp.start();
+//        mp = MediaPlayer.create(this, R.raw.button_click_1);
+//        mp.start();
         dialog.show();
 
 //        timer.schedule(new TimerTask() {
@@ -530,9 +564,11 @@ public class StartActivity extends AppCompatActivity {
     }
 
     public void changeToGame(View view) {
-        mp.stop();
-        MediaPlayer mp = MediaPlayer.create(this, R.raw.button_click_1);
-        mp.start();
+//        mp.stop();
+//        mp.release();
+//        MediaPlayer mp = MediaPlayer.create(this, R.raw.button_click_1);
+//        mp.start();
+
         Intent intent = new Intent(StartActivity.this, GameActivity.class);
 
         startActivity(intent);

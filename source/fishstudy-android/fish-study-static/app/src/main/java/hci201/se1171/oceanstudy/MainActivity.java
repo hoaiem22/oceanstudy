@@ -66,8 +66,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         FishAnimation();
         BubbleAnimation();
-        MediaPlayer mp = MediaPlayer.create(this, R.raw.funny_background);
-        mp.start();
+        Intent intent = new Intent(MainActivity.this, BackgroundMusicService.class);
+        startService(intent);
+
 
 
 
@@ -77,11 +78,11 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void changeToStart(View view){
-        MediaPlayer mp = MediaPlayer.create(this, R.raw.button_click_1);
-        mp.start();
+//        MediaPlayer mp = MediaPlayer.create(this, R.raw.button_click_1);
+//        mp.start();
 
 
-        Intent intent = new Intent(this, StartActivity.class);
+        Intent intent = new Intent(MainActivity.this, StartActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
 
@@ -289,12 +290,16 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        Intent intent = new Intent(MainActivity.this, BackgroundMusicService.class);
+        startService(intent);
 
     }
 
     @Override
     protected void onStop() {
         super.onStop();
+        Intent intent = new Intent(MainActivity.this, BackgroundMusicService.class);
+        stopService(intent);
 
     }
 }

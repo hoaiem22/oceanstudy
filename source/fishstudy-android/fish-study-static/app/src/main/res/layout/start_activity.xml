@@ -31,31 +31,6 @@
                 android:scaleX="1.4">
 
 
-                    <ImageView
-                        android:id="@+id/arrow_down"
-                        android:layout_width="25dp"
-                        android:layout_height="30dp"
-                        android:layout_marginTop="200dp"
-                        android:src="@drawable/arrow"
-                        android:layout_marginLeft="80dp"
-                        />
-                <TextView
-                    android:id="@+id/text_huongdan"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:text="Chạm vào cá ở giữa"
-                    android:layout_marginLeft="80dp"
-                    android:fontFamily="@font/linottebold"
-                    android:textSize="20dp"
-                    android:textColor="#000000"/>
-
-
-
-
-
-                
-
             </LinearLayout>
             <pl.droidsonroids.gif.GifImageView
                 android:id="@+id/boat"
@@ -82,18 +57,21 @@
                         android:id="@+id/bubble1"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
-                        android:background="@drawable/ic_image2vector"/>
+
+                       />
 
                     <ImageView
                         android:id="@+id/bubble2"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
-                        android:background="@drawable/ic_image2vector"/>
+
+                        />
                     <ImageView
                         android:id="@+id/bubble3"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
-                        android:background="@drawable/ic_image2vector"/>
+
+                        />
 
 
 
@@ -144,6 +122,30 @@
 
 
 
+                    <ImageView
+                        android:id="@+id/pointing"
+                        android:layout_width="70dp"
+                        android:layout_height="90dp"
+                        android:src="@drawable/pointing"
+                        android:scaleX="1.1"
+                        android:scaleY="1.1"
+                        android:layout_marginLeft="20dp"
+                        app:layout_constraintLeft_toRightOf="@+id/fish1"
+                        />
+                    <!--<TextView-->
+                        <!--android:id="@+id/text_huongdan"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:textStyle="bold"-->
+                        <!--android:text="Chạm vào cá to."-->
+                        <!--android:layout_marginLeft="80dp"-->
+                        <!--android:fontFamily="@font/linottebold"-->
+                        <!--android:textSize="20dp"-->
+                        <!--android:textColor="#000000"/>-->
+
+
+
+
                     <pl.droidsonroids.gif.GifImageView
                         android:id="@+id/fish1"
                         android:layout_width="150dp"
@@ -172,7 +174,7 @@
                         android:id="@+id/fish3"
                         android:layout_width="150dp"
                         android:layout_height="150dp"
-                        android:background="@drawable/seahorse"
+                        android:background="@drawable/seahorse_gif"
                         app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/fish2"

@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+
     tools:context=".MainActivity">
 
     <android.support.constraint.ConstraintLayout
@@ -12,6 +13,32 @@
         android:layout_height="match_parent"
         android:background="@drawable/footer"
         android:scaleX="1.4">
+
+        <ImageView
+            android:id="@+id/bubble1"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@drawable/bubble3"/>
+
+        <ImageView
+            android:id="@+id/bubble2"
+            android:layout_width="100dp"
+            android:layout_height="150dp"
+            android:src="@drawable/bubble3"
+            />
+        <ImageView
+            android:id="@+id/bubble3"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/bubble3"
+            />
+        <ImageView
+            android:id="@+id/bubble4"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/bubble3"
+            />
+
 
         <pl.droidsonroids.gif.GifImageView
             android:id="@+id/fish_home_1"
@@ -45,6 +72,7 @@
             app:layout_constraintRight_toLeftOf="parent"
             android:onClick="changeToStart"
             android:src="@drawable/start"
+            android:scaleY="1.35"
             />
 
         <!--<Button-->
@@ -64,27 +92,6 @@
 
 
 
-        <ImageView
-            android:id="@+id/bubble1"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:background="@drawable/ic_image2vector"/>
-
-        <ImageView
-            android:id="@+id/bubble2"
-            android:layout_width="100dp"
-            android:layout_height="150dp"
-            android:background="@drawable/ic_image2vector"/>
-        <ImageView
-            android:id="@+id/bubble3"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:background="@drawable/ic_image2vector"/>
-        <ImageView
-            android:id="@+id/bubble4"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:background="@drawable/ic_image2vector"/>
 
 
 
