@@ -2,6 +2,7 @@ package hci201.se1171.oceanstudy;
 
 import android.content.Intent;
 import android.graphics.Point;
+import android.media.Image;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
@@ -21,7 +22,7 @@ import java.util.TimerTask;
 public class MainActivity extends AppCompatActivity {
     private int screenHeight;
     private int screenWidth;
-    Button btnStart;
+    ImageView btnStart;
 
     private ImageView fish_home_1;
     private ImageView fish_home_2;

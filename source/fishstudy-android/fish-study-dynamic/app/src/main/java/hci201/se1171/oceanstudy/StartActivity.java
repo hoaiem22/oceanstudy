@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Point;
+import android.media.Image;
 import android.media.MediaPlayer;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Display;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -22,7 +24,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
+//import com.bumptech.glide.load.engine.DiskCacheStrategy;
+//import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
+//import com.bumptech.glide.signature.StringSignature;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -63,7 +69,9 @@ public class StartActivity extends AppCompatActivity {
     private List<Fish> fishShow; //List of Fish to show on layout
     private MediaPlayer mp;
     private MediaPlayer mpButtonClick;
-
+    private boolean is3g = false;
+    private boolean isWifi = false;
+    private LinearLayout layoutBody;
     @SuppressLint("ResourceType")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,13 +83,12 @@ public class StartActivity extends AppCompatActivity {
         createSound();
         mp.start();
         //For 3G check
-        boolean is3g = manager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE)
+        is3g = manager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE)
                 .isConnectedOrConnecting();
         //For WiFi Check
-        boolean isWifi = manager.getNetworkInfo(ConnectivityManager.TYPE_WIFI)
+        isWifi = manager.getNetworkInfo(ConnectivityManager.TYPE_WIFI)
                 .isConnectedOrConnecting();
 
-        Log.i("3GGGGGG", is3g + " net " + isWifi);
 //        fish1 =  findViewById(R.id.fish1);
 //        fish2 =  findViewById(R.id.fish2);
 //        fish3 =  findViewById(R.id.fish3);
@@ -123,7 +130,7 @@ public class StartActivity extends AppCompatActivity {
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
-//                        changePostBubble();
+                        changePostBubble();
 
                     }
                 });
@@ -138,7 +145,7 @@ public class StartActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Please make sure your Network Connection is ON to update more Fish", Toast.LENGTH_LONG).show();
         }
         fishShow = loadInternal();
-        LinearLayout layoutBody = (LinearLayout) findViewById(R.id.layoutBody);
+        layoutBody = (LinearLayout) findViewById(R.id.layoutBody);
         //If list fish is empty, then add static data and reload layout by resource
         // Else load data from text file with img, video is loaded from internet
         if (fishShow.isEmpty()) {
@@ -157,9 +164,14 @@ public class StartActivity extends AppCompatActivity {
     }
 
     public void loadToLayout(LinearLayout linearLayout, List<Fish> fishShow) {
+
+
         for (int i = 0; i < fishShow.size(); i++) {
-            GifImageView imageView = new GifImageView(this.context);
+            GifImageView imageView = new GifImageView(StartActivity.this);
             imageView.setId(fishShow.get(i).getId());
+
+
+
             final String fishName = fishShow.get(i).getName();
             final String img = fishShow.get(i).getImg();
             final String video = fishShow.get(i).getVideo();
@@ -167,8 +179,10 @@ public class StartActivity extends AppCompatActivity {
                 int posImg = Integer.parseInt(img);
                 imageView.setBackgroundResource(posImg);
             } catch (Exception e) {
-                GlideDrawableImageViewTarget imageViewTarget = new GlideDrawableImageViewTarget(imageView);
-                Glide.with(context).load(img).into(imageViewTarget);
+//                GlideDrawableImageViewTarget imageViewTarget = new GlideDrawableImageViewTarget(imageView);
+                Glide.with(this).load(img)
+                        .into(imageView).clearOnDetach();
+
             }
             imageView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -178,11 +192,12 @@ public class StartActivity extends AppCompatActivity {
                 }
             });
             linearLayout.addView(imageView, i);
+
         }
     }
 
     public List<Fish> fetchAPI() {
-        StringBuilder stringBuilder = new StringBuilder("http://192.168.1.97:8080/fish/getAll");
+        StringBuilder stringBuilder = new StringBuilder("http://192.168.1.139:8090/fish/getListActiveAsc");
         String url = stringBuilder.toString();
         Object dataTransfer[] = new Object[1];
         dataTransfer[0] = url;
@@ -273,11 +288,32 @@ public class StartActivity extends AppCompatActivity {
     }
 
     public void changeToGame(View view) {
-        stopPlaying(mp);
         mpButtonClick.start();
-        Intent intent = new Intent(StartActivity.this, GameActivity.class);
-        intent.putExtra("listFish", (Serializable) fishShow);
-        startActivity(intent);
+        if(is3g || isWifi) {
+
+        }
+
+
+        if(fishShow.size() > 3){
+            if(mp != null) {
+                stopPlaying(mp);
+            }
+            Intent intent = new Intent(StartActivity.this, GameActivity.class);
+            intent.putExtra("listFish", (Serializable) fishShow);
+            startActivity(intent);
+        }
+
+        else {
+
+            if(is3g || isWifi) {
+                saveInternal(fetchAPI());
+                fishShow = loadInternal();
+                loadToLayout(layoutBody, fishShow);
+            } else {
+                Toast.makeText(getApplicationContext(), "Oops, you don't have enough fish to start game." +
+                        "Please open 3G or Wifi to update fishes.", Toast.LENGTH_LONG).show();
+            }
+        }
     }
 
     public void saveInternal(List<Fish> listFish) {
@@ -387,17 +423,17 @@ public class StartActivity extends AppCompatActivity {
             int posVideo = Integer.parseInt(video);
             imageView.setBackgroundResource(posVideo);
         } catch (Exception e) {
-            GlideDrawableImageViewTarget imageViewTarget = new GlideDrawableImageViewTarget(imageView);
-            Glide.with(context).load(video).into(imageViewTarget);
+//            GlideDrawableImageViewTarget imageViewTarget = new GlideDrawableImageViewTarget(imageView);
+            Glide.with(this).load(video).into(imageView);
         }
 
-        // set the custom dialog components - text, image and button
+        // set the custom dialog components - text, image and buttonImageView
         TextView fishName = (TextView) dialog.findViewById(R.id.txt_fish_name);
         fishName.setText(name);
         fishName.setTextSize(30);
 
 
-        Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonOK);
+        ImageView dialogButton = (ImageView) dialog.findViewById(R.id.dialogButtonOK);
         // if button is clicked, close the custom dialog
         dialogButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -420,7 +456,9 @@ public class StartActivity extends AppCompatActivity {
 
     private void saveInternalStatic() {
         List<Fish> fishList = new ArrayList<>();
-        fishList.add(new Fish(1, "Ca ngua", 1, 1, 1, 1, 1, String.valueOf(R.raw.background), String.valueOf(R.raw.home), "Enable"));
+        fishList.add(new Fish(1, "Ca Heo", 1, 1, 1, 1, 1, String.valueOf(R.drawable.dolphin), String.valueOf(R.drawable.dolphin_info), "Enable"));
+        fishList.add(new Fish(1, "Ca Map", 1, 1, 1, 2, 1, String.valueOf(R.drawable.shark), String.valueOf(R.drawable.shark_info), "Enable"));
+
         saveInternal(fishList);
     }
 

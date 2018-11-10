@@ -1,43 +1,23 @@
 package hci201.se1171.oceanstudy;
-
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.Intent;
 import android.os.AsyncTask;
-import android.os.Bundle;
-import android.os.Parcelable;
-import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
+//import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
 import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.ObjectOutputStream;
-import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 
-import hci201.se1171.oceanstudy.model.Fish;
-import pl.droidsonroids.gif.GifImageView;
+
+
 
 public class GetFishesUseAPI extends AsyncTask<Object, String, String>  {
 
@@ -62,8 +42,8 @@ public class GetFishesUseAPI extends AsyncTask<Object, String, String>  {
             url = (String) objects[0];
             URL myUrl = new URL(url);
             HttpURLConnection httpUrlConnection = (HttpURLConnection) myUrl.openConnection();
-            httpUrlConnection.setConnectTimeout(3000);
-            httpUrlConnection.setReadTimeout(3000);
+            httpUrlConnection.setConnectTimeout(5000);
+            httpUrlConnection.setReadTimeout(5000);
             Log.i("Responseeee", "Codeeeeeee: " + httpUrlConnection.getResponseCode());
             httpUrlConnection.connect();
 
@@ -143,8 +123,8 @@ public class GetFishesUseAPI extends AsyncTask<Object, String, String>  {
 
         ImageView imageView = dialog.findViewById(R.id.image_fish_info);
 
-        GlideDrawableImageViewTarget imageViewTarget = new GlideDrawableImageViewTarget(imageView);
-        Glide.with(context).load(video).into(imageViewTarget);
+//        GlideDrawableImageViewTarget imageViewTarget = new GlideDrawableImageViewTarget(imageView);
+        Glide.with(context).load(video).into(imageView);
 
         // set the custom dialog components - text, image and button
         TextView fishName = (TextView) dialog.findViewById(R.id.txt_fish_name);

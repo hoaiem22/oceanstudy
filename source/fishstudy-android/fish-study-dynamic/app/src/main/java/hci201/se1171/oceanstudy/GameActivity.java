@@ -20,7 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
+//import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -57,90 +57,86 @@ public class GameActivity extends AppCompatActivity {
         createSound();
         mp.start();
         listFish = (List) getIntent().getSerializableExtra("listFish");
-        if (listFish.size() < 3) {
-            Toast.makeText(getApplicationContext(), "Sorry Opp, you have not enough fish to start game." +
-                    "Please open 3G or Wifi to update fish.", Toast.LENGTH_LONG).show();
-        } else {
-            imgGame_fish = findViewById(R.id.gameImage);
+        imgGame_fish = findViewById(R.id.gameImage);
 
-            btn_answer1 = findViewById(R.id.answerA);
-            btn_answer2 = findViewById(R.id.answerB);
-            btn_answer3 = findViewById(R.id.answerC);
-            btn_answer4 = findViewById(R.id.answerD);
+        btn_answer1 = findViewById(R.id.answerA);
+        btn_answer2 = findViewById(R.id.answerB);
+        btn_answer3 = findViewById(R.id.answerC);
+        btn_answer4 = findViewById(R.id.answerD);
 
 
-            Animation scaleAnim = AnimationUtils.loadAnimation(this, R.anim.scale);
-            btn_answer1.setAnimation(scaleAnim);
-            btn_answer2.setAnimation(scaleAnim);
-            btn_answer3.setAnimation(scaleAnim);
-            btn_answer4.setAnimation(scaleAnim);
+        Animation scaleAnim = AnimationUtils.loadAnimation(this, R.anim.scale);
+        btn_answer1.setAnimation(scaleAnim);
+        btn_answer2.setAnimation(scaleAnim);
+        btn_answer3.setAnimation(scaleAnim);
+        btn_answer4.setAnimation(scaleAnim);
 
 
-            // Shuffle list
-            Collections.shuffle(listFish);
-            newQuestion(turn);
+        // Shuffle list
+        Collections.shuffle(listFish);
+        newQuestion(turn);
 
-            btn_answer1.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    mpButtonClick.start();
-                    if (btn_answer1.getText().toString().equalsIgnoreCase(listFish.get(turn - 1).getName())) {
-                        mpSoundHooray.start();
-                        mpSoundCorrect.start();
-                        setCorrect();
-                    } else {
-                        mpSoundOh.start();
-                        setWrong(listFish.get(turn - 1).getName());
-                    }
+        btn_answer1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mpButtonClick.start();
+                if (btn_answer1.getText().toString().equalsIgnoreCase(listFish.get(turn - 1).getName())) {
+                    mpSoundHooray.start();
+                    mpSoundCorrect.start();
+                    setCorrect();
+                } else {
+                    mpSoundOh.start();
+                    setWrong(listFish.get(turn - 1).getName());
                 }
-            });
-            btn_answer2.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    mpButtonClick.start();
-                    if (btn_answer2.getText().toString().equalsIgnoreCase(listFish.get(turn - 1).getName())) {
-                        mpSoundHooray.start();
-                        mpSoundCorrect.start();
-                        setCorrect();
-                    } else {
-                        mpSoundOh.start();
-                        setWrong(listFish.get(turn - 1).getName());
-                    }
+            }
+        });
+        btn_answer2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mpButtonClick.start();
+                if (btn_answer2.getText().toString().equalsIgnoreCase(listFish.get(turn - 1).getName())) {
+                    mpSoundHooray.start();
+                    mpSoundCorrect.start();
+                    setCorrect();
+                } else {
+                    mpSoundOh.start();
+                    setWrong(listFish.get(turn - 1).getName());
                 }
-            });
+            }
+        });
 
 
-            btn_answer3.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    mpButtonClick.start();
-                    if (btn_answer3.getText().toString().equalsIgnoreCase(listFish.get(turn - 1).getName())) {
-                        mpSoundHooray.start();
-                        mpSoundCorrect.start();
-                        setCorrect();
-                    } else {
-                        mpSoundOh.start();
-                        setWrong(listFish.get(turn - 1).getName());
-                    }
+        btn_answer3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mpButtonClick.start();
+                if (btn_answer3.getText().toString().equalsIgnoreCase(listFish.get(turn - 1).getName())) {
+                    mpSoundHooray.start();
+                    mpSoundCorrect.start();
+                    setCorrect();
+                } else {
+                    mpSoundOh.start();
+                    setWrong(listFish.get(turn - 1).getName());
                 }
-            });
+            }
+        });
 
 
-            btn_answer4.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    mpButtonClick.start();
-                    if (btn_answer4.getText().toString().equalsIgnoreCase(listFish.get(turn - 1).getName())) {
-                        mpSoundHooray.start();
-                        mpSoundCorrect.start();
-                        setCorrect();
-                    } else {
-                        mpSoundOh.start();
-                        setWrong(listFish.get(turn - 1).getName());
-                    }
+        btn_answer4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mpButtonClick.start();
+                if (btn_answer4.getText().toString().equalsIgnoreCase(listFish.get(turn - 1).getName())) {
+                    mpSoundHooray.start();
+                    mpSoundCorrect.start();
+                    setCorrect();
+                } else {
+                    mpSoundOh.start();
+                    setWrong(listFish.get(turn - 1).getName());
                 }
-            });
-        }
+            }
+        });
+
     }
 
     @Override
@@ -154,7 +150,7 @@ public class GameActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         mpButtonClick.start();
-        
+
     }
 
     public void createSound() {
@@ -242,6 +238,9 @@ public class GameActivity extends AppCompatActivity {
                             imgGame_fish.getLayoutParams().height = LinearLayout.LayoutParams.MATCH_PARENT;
                             imgGame_fish.getLayoutParams().width = LinearLayout.LayoutParams.MATCH_PARENT;
                             linearLayout.setPadding(0, 0, 0, 0);
+                            imgGame_fish.requestLayout();
+                            linearLayout.requestLayout();
+
                             Animation scaleAnim = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.scale);
                             btn_answer1.setAnimation(scaleAnim);
                             btn_answer2.setAnimation(scaleAnim);
@@ -249,7 +248,13 @@ public class GameActivity extends AppCompatActivity {
                             btn_answer4.setAnimation(scaleAnim);
                             newQuestion(turn);
                         } else {
+
                             openDoneAskingDialog();
+                            imgGame_fish.getLayoutParams().height = LinearLayout.LayoutParams.MATCH_PARENT;
+                            imgGame_fish.getLayoutParams().width = LinearLayout.LayoutParams.MATCH_PARENT;
+                            linearLayout.setPadding(0, 0, 0, 0);
+                            imgGame_fish.requestLayout();
+                            linearLayout.requestLayout();
                         }
                     }
                 });
@@ -258,8 +263,9 @@ public class GameActivity extends AppCompatActivity {
     }
 
     public void openDoneAskingDialog() {
-        final Dialog dialog = new Dialog(this);
+        final Dialog dialog = new Dialog(GameActivity.this);
         dialog.setContentView(R.layout.activity_ask_user);
+        imgGame_fish.setImageResource(R.drawable.wrong_spong);
         final TextView fish_asking_text = (TextView) findViewById(R.id.fish_asking_text);
         ImageView btn_no = (ImageView) dialog.findViewById(R.id.btnNo);
         ImageView btn_yes = (ImageView) dialog.findViewById(R.id.btnYes);
@@ -287,7 +293,7 @@ public class GameActivity extends AppCompatActivity {
                 btn_answer2.setVisibility(View.VISIBLE);
                 btn_answer3.setVisibility(View.VISIBLE);
                 btn_answer4.setVisibility(View.VISIBLE);
-                fish_asking_text.setText("Đây là cá gì?");
+                fish_asking_text.setText("Đây là con gì?");
                 turn = 1;
                 newQuestion(turn);
             }
@@ -343,8 +349,8 @@ public class GameActivity extends AppCompatActivity {
     public void newQuestion(int number) {
         //set flag image to screen
 //        imgGame_fish.setImageURI(Uri.parse(listFish.get(number - 1).getImg()));
-        GlideDrawableImageViewTarget imageViewTarget = new GlideDrawableImageViewTarget(imgGame_fish);
-        Glide.with(getApplicationContext()).load(listFish.get(number - 1).getImg()).into(imageViewTarget);
+//        GlideDrawableImageViewTarget imageViewTarget = new GlideDrawableImageViewTarget(imgGame_fish);
+        Glide.with(getApplicationContext()).load(listFish.get(number - 1).getImg()).into(imgGame_fish);
         int correct_answer = r.nextInt(4) + 1;
         int firstButton = number - 1;
         int secondButton;

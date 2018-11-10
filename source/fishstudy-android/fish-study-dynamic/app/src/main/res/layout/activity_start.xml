@@ -16,51 +16,55 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+
+
+
             <LinearLayout
                 android:id="@+id/layoutHeader"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/header2"
+                android:background="@drawable/fhead"
                 android:orientation="vertical"
                 android:scaleX="1.4">
 
-
-                <ImageView
-                    android:id="@+id/arrow_down"
-                    android:layout_width="25dp"
-                    android:layout_height="30dp"
-                    android:layout_marginTop="200dp"
-                    android:src="@drawable/arrow"
-                    android:layout_marginLeft="80dp"
-                    />
-                <TextView
-                    android:id="@+id/text_huongdan"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:text="Chạm Vào Cá Ở Giữa"
-                    android:layout_marginLeft="80dp"/>
-
             </LinearLayout>
             <pl.droidsonroids.gif.GifImageView
-                android:layout_width="60dp"
-                android:layout_height="45dp"
-                android:src="@drawable/relax_header"
+                android:id="@+id/headerBoat"
+                android:layout_width="200dp"
+                android:layout_height="100dp"
+                android:src="@drawable/boat"
                 app:layout_constraintBottom_toBottomOf="@+id/layoutHeader"
                 app:layout_constraintRight_toLeftOf="@+id/layoutHeader"
                 app:layout_constraintLeft_toRightOf="@+id/layoutHeader"
                 />
+
+
             <LinearLayout
                 android:id="@+id/layoutBody"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/body"
+                android:background="@drawable/fbody"
                 android:orientation="vertical"
                 app:layout_constraintTop_toBottomOf="@+id/layoutHeader"
                 android:paddingTop="150dp">
 
 
+                <ImageView
+                    android:id="@+id/bubble1"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/bubble3"/>
 
+                <ImageView
+                    android:id="@+id/bubble2"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/bubble3"/>
+                <ImageView
+                    android:id="@+id/bubble3"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/bubble3"/>
                     <!--<Button-->
                         <!--android:id="@+id/fish1"-->
                         <!--android:layout_width="100dp"-->
@@ -115,25 +119,21 @@
                         <!--app:layout_constraintTop_toBottomOf="@id/fish5"-->
                         <!--android:layout_marginTop="100dp"-->
                         <!--android:onClick="showFishInfo"/>-->
-                <ImageView
-                    android:id="@+id/bubble1"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-           />
 
-                <ImageView
-                    android:id="@+id/bubble2"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-            />
-                <ImageView
-                    android:id="@+id/bubble3"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-      />
                 </LinearLayout>
 
-
+            <ImageView
+                android:id="@+id/pointing"
+                android:layout_width="70dp"
+                android:layout_height="90dp"
+                android:src="@drawable/pointing"
+                android:scaleX="1.1"
+                android:scaleY="1.1"
+                android:layout_marginTop="200dp"
+                app:layout_constraintLeft_toRightOf="@+id/headerBoat"
+                app:layout_constraintRight_toRightOf="@+id/layoutBody"
+                app:layout_constraintTop_toBottomOf="@+id/layoutHeader"
+                />
         </android.support.constraint.ConstraintLayout>
 
 
@@ -142,18 +142,14 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintRight_toRightOf="@+id/scrollView"
-        >
-        <Button
+        app:layout_constraintRight_toRightOf="@+id/scrollView">
+        <ImageView
             android:id="@+id/btnPlayGame"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Chơi trò chơi"
-            android:textStyle="bold"
-            android:backgroundTint="@android:color/holo_orange_light"
+            android:layout_width="150dp"
+            android:layout_height="60dp"
+            android:src="@drawable/playgame"
             android:onClick="changeToGame"
-            android:layout_marginTop="10dp"
-            />
+            android:layout_marginTop="10dp" />
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

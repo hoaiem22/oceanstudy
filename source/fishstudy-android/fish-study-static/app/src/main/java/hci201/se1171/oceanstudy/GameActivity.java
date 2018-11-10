@@ -330,7 +330,7 @@ public class GameActivity extends AppCompatActivity {
                 btn_answer2.setVisibility(View.VISIBLE);
                 btn_answer3.setVisibility(View.VISIBLE);
                 btn_answer4.setVisibility(View.VISIBLE);
-                fish_asking_text.setText("Đây là cá gì?");
+                fish_asking_text.setText("Đây là con gì?");
                 turn = 1;
                 newQuestion(turn);
 //                MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.musicingame);
