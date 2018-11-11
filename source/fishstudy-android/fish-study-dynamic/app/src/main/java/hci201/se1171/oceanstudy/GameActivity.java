@@ -207,8 +207,8 @@ public class GameActivity extends AppCompatActivity {
         final TextView fish_asking_text = (TextView) findViewById(R.id.fish_asking_text);
         final LinearLayout linearLayout = (LinearLayout) findViewById(R.id.gameHeaderImage);
         imgGame_fish.setImageResource(R.drawable.wrong_spong);
-        imgGame_fish.getLayoutParams().height = 300;
-        imgGame_fish.getLayoutParams().width = 300;
+        imgGame_fish.getLayoutParams().height = 500;
+        imgGame_fish.getLayoutParams().width = 500;
         imgGame_fish.requestLayout();
         btn_answer1.setVisibility(View.GONE);
         btn_answer2.setVisibility(View.GONE);
@@ -221,7 +221,7 @@ public class GameActivity extends AppCompatActivity {
         btn_answer2.clearAnimation();
         btn_answer3.clearAnimation();
         btn_answer4.clearAnimation();
-        linearLayout.setPadding(100, 100, 0, 0);
+        linearLayout.setPadding(00, 100, 0, 0);
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
@@ -265,7 +265,7 @@ public class GameActivity extends AppCompatActivity {
     public void openDoneAskingDialog() {
         final Dialog dialog = new Dialog(GameActivity.this);
         dialog.setContentView(R.layout.activity_ask_user);
-        imgGame_fish.setImageResource(R.drawable.wrong_spong);
+//        imgGame_fish.setImageResource(R.drawable.wrong_spong);
         final TextView fish_asking_text = (TextView) findViewById(R.id.fish_asking_text);
         ImageView btn_no = (ImageView) dialog.findViewById(R.id.btnNo);
         ImageView btn_yes = (ImageView) dialog.findViewById(R.id.btnYes);

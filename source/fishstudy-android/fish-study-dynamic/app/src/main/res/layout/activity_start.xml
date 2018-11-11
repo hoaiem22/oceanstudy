@@ -53,18 +53,18 @@
                     android:id="@+id/bubble1"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:src="@drawable/bubble3"/>
+                  />
 
                 <ImageView
                     android:id="@+id/bubble2"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:src="@drawable/bubble3"/>
+                    />
                 <ImageView
                     android:id="@+id/bubble3"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:src="@drawable/bubble3"/>
+                   />
                     <!--<Button-->
                         <!--android:id="@+id/fish1"-->
                         <!--android:layout_width="100dp"-->

@@ -27,6 +27,60 @@
         android:textColor="@android:color/black"
         app:layout_constraintTop_toBottomOf="@id/image_fish_info"
         android:textAlignment="center"/>
+    <TextView
+        android:id="@+id/txtWeight"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/linottebold"
+        app:layout_constraintRight_toLeftOf="parent"
+        app:layout_constraintLeft_toRightOf="parent"
+        android:textColor="@android:color/black"
+        app:layout_constraintTop_toBottomOf="@id/txt_fish_name"
+        android:textAlignment="center"/>
+    <TextView
+        android:id="@+id/txtLength"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cá màu hồng"
+        android:fontFamily="@font/linottebold"
+        app:layout_constraintRight_toLeftOf="parent"
+        app:layout_constraintLeft_toRightOf="parent"
+        android:textColor="@android:color/black"
+        app:layout_constraintTop_toBottomOf="@id/txtWeight"
+        android:textAlignment="center"/>
+    <!--<TextView-->
+        <!--android:id="@+id/txtHeight"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Cá màu hồng"-->
+        <!--android:fontFamily="@font/linottebold"-->
+        <!--app:layout_constraintRight_toLeftOf="parent"-->
+        <!--app:layout_constraintLeft_toRightOf="parent"-->
+        <!--android:textColor="@android:color/black"-->
+        <!--app:layout_constraintTop_toBottomOf="@id/txtLength"-->
+        <!--android:textAlignment="center"/>-->
+    <TextView
+        android:id="@+id/txtDeep"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cá màu hồng"
+        android:fontFamily="@font/linottebold"
+        app:layout_constraintRight_toLeftOf="parent"
+        app:layout_constraintLeft_toRightOf="parent"
+        android:textColor="@android:color/black"
+        app:layout_constraintTop_toBottomOf="@id/txtLength"
+        android:textAlignment="center"/>
+    <TextView
+        android:id="@+id/txtAge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cá màu hồng"
+        android:fontFamily="@font/linottebold"
+        app:layout_constraintRight_toLeftOf="parent"
+        app:layout_constraintLeft_toRightOf="parent"
+        android:textColor="@android:color/black"
+        app:layout_constraintTop_toBottomOf="@id/txtDeep"
+        android:textAlignment="center"/>
 
     <!--<TextView-->
         <!--android:id="@+id/txt_fish_info_english"-->
@@ -64,7 +118,7 @@
         android:src="@drawable/keepgoing"
         app:layout_constraintRight_toLeftOf="parent"
         app:layout_constraintLeft_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txt_fish_name"
+        app:layout_constraintTop_toBottomOf="@id/txtAge"
         android:layout_marginTop="20dp"
 
         />

@@ -5,7 +5,6 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Point;
-import android.media.Image;
 import android.media.MediaPlayer;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
@@ -14,9 +13,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Display;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
+import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -24,11 +26,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.request.RequestOptions;
-//import com.bumptech.glide.load.engine.DiskCacheStrategy;
-//import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
-//import com.bumptech.glide.signature.StringSignature;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -49,10 +46,16 @@ import java.util.concurrent.ExecutionException;
 import hci201.se1171.oceanstudy.model.Fish;
 import pl.droidsonroids.gif.GifImageView;
 
+//import com.bumptech.glide.load.engine.DiskCacheStrategy;
+//import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
+//import com.bumptech.glide.signature.StringSignature;
+
 public class StartActivity extends AppCompatActivity {
 
+    private static String url = "http://192.168.1.75:8090/fish/getListActiveAsc";
     private static final int READ_BLOCK_SIZE = 5000;
     Context context = this;
+    ImageView poiting;
     private int screenHeight;
     private int screenWidth;
     private ImageView bubble1;
@@ -72,6 +75,7 @@ public class StartActivity extends AppCompatActivity {
     private boolean is3g = false;
     private boolean isWifi = false;
     private LinearLayout layoutBody;
+
     @SuppressLint("ResourceType")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,15 +83,9 @@ public class StartActivity extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_start);
-        ConnectivityManager manager = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
+        poiting = findViewById(R.id.pointing);
         createSound();
         mp.start();
-        //For 3G check
-        is3g = manager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE)
-                .isConnectedOrConnecting();
-        //For WiFi Check
-        isWifi = manager.getNetworkInfo(ConnectivityManager.TYPE_WIFI)
-                .isConnectedOrConnecting();
 
 //        fish1 =  findViewById(R.id.fish1);
 //        fish2 =  findViewById(R.id.fish2);
@@ -124,22 +122,36 @@ public class StartActivity extends AppCompatActivity {
         bubble3.setY(-80.0f);
 
 
+        AnimationSet set = new AnimationSet(true);
+        Animation trAnimation = new TranslateAnimation(0, 10, 0, 0);
+        trAnimation.setDuration(400);
+
+        trAnimation.setRepeatMode(Animation.REVERSE); /*---------> This will make the view translate in the reverse direction*/
+        trAnimation.setRepeatCount(20);
+        set.addAnimation(trAnimation);
+        Animation anim = new AlphaAnimation(1.0f, 0.0f);
+        anim.setDuration(10000);
+        set.addAnimation(anim);
+
+        poiting.startAnimation(set);
+
+
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                handler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        changePostBubble();
-
-                    }
-                });
+//                handler.post(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        changePostBubble();
+//
+//                    }
+//                });
             }
         }, 0, 20);
 
         //Check if your device have 3g or wifi,
         //Then update data from server and save to internal
-        if (is3g || isWifi) {
+        if (isInternet()) {
             saveInternal(fetchAPI());
         } else {
             Toast.makeText(getApplicationContext(), "Please make sure your Network Connection is ON to update more Fish", Toast.LENGTH_LONG).show();
@@ -163,15 +175,27 @@ public class StartActivity extends AppCompatActivity {
         mp.start();
     }
 
-    public void loadToLayout(LinearLayout linearLayout, List<Fish> fishShow) {
+    public boolean isInternet() {
+        //Return true if have 3G or wifi
+        ConnectivityManager manager = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
+        //For 3G check
+        is3g = manager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE)
+                .isConnectedOrConnecting();
+        //For WiFi Check
+        isWifi = manager.getNetworkInfo(ConnectivityManager.TYPE_WIFI)
+                .isConnectedOrConnecting();
+        if (is3g || isWifi)
+            return true;
+        return false;
+    }
+
+    public void loadToLayout(LinearLayout linearLayout, final List<Fish> fishShow) {
 
 
         for (int i = 0; i < fishShow.size(); i++) {
             GifImageView imageView = new GifImageView(StartActivity.this);
             imageView.setId(fishShow.get(i).getId());
-
-
-
+            final Fish fish = fishShow.get(i);
             final String fishName = fishShow.get(i).getName();
             final String img = fishShow.get(i).getImg();
             final String video = fishShow.get(i).getVideo();
@@ -188,7 +212,7 @@ public class StartActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     mpButtonClick.start();
-                    showFishDialog(fishName, video);
+                    showFishDialog(fish);
                 }
             });
             linearLayout.addView(imageView, i);
@@ -197,7 +221,7 @@ public class StartActivity extends AppCompatActivity {
     }
 
     public List<Fish> fetchAPI() {
-        StringBuilder stringBuilder = new StringBuilder("http://192.168.1.139:8090/fish/getListActiveAsc");
+        StringBuilder stringBuilder = new StringBuilder(url);
         String url = stringBuilder.toString();
         Object dataTransfer[] = new Object[1];
         dataTransfer[0] = url;
@@ -288,27 +312,28 @@ public class StartActivity extends AppCompatActivity {
     }
 
     public void changeToGame(View view) {
+        //If list fish have more than 4 fish, then change to Game Activity
+
+        //If list fish have less than 4 fish then check 3G or Wifi
+        //If your device has 3G or wifi, then update from server
+        //else make Toast
         mpButtonClick.start();
-        if(is3g || isWifi) {
-
-        }
-
-
-        if(fishShow.size() > 3){
-            if(mp != null) {
+        if (fishShow.size() > 3) {
+            if (mp != null) {
                 stopPlaying(mp);
             }
             Intent intent = new Intent(StartActivity.this, GameActivity.class);
             intent.putExtra("listFish", (Serializable) fishShow);
             startActivity(intent);
-        }
-
-        else {
-
-            if(is3g || isWifi) {
+        } else {
+            if (isInternet()) {
                 saveInternal(fetchAPI());
+
                 fishShow = loadInternal();
+                layoutBody.removeAllViews();
                 loadToLayout(layoutBody, fishShow);
+                //Notify fish update
+                Toast.makeText(getApplicationContext(), "Fish has been update", Toast.LENGTH_LONG).show();
             } else {
                 Toast.makeText(getApplicationContext(), "Oops, you don't have enough fish to start game." +
                         "Please open 3G or Wifi to update fishes.", Toast.LENGTH_LONG).show();
@@ -412,25 +437,39 @@ public class StartActivity extends AppCompatActivity {
         return fishList;
     }
 
-    public void showFishDialog(String name, String video) {
+    public void showFishDialog(Fish fish) {
         final Dialog dialog = new Dialog(this.context);
         dialog.setContentView(R.layout.activity_fish_dialog);
-        dialog.setTitle("Thông tin của cá.");
-
+        dialog.setTitle("Thông tin của cá");
         ImageView imageView = dialog.findViewById(R.id.image_fish_info);
-
         try {
-            int posVideo = Integer.parseInt(video);
+            int posVideo = Integer.parseInt(fish.getVideo());
             imageView.setBackgroundResource(posVideo);
         } catch (Exception e) {
 //            GlideDrawableImageViewTarget imageViewTarget = new GlideDrawableImageViewTarget(imageView);
-            Glide.with(this).load(video).into(imageView);
+            Glide.with(this).load(fish.getVideo()).into(imageView);
         }
 
         // set the custom dialog components - text, image and buttonImageView
         TextView fishName = (TextView) dialog.findViewById(R.id.txt_fish_name);
-        fishName.setText(name);
+        TextView fishWeight = (TextView) dialog.findViewById(R.id.txtWeight);
+        TextView fishLength = (TextView) dialog.findViewById(R.id.txtLength);
+//        TextView fishHeight = (TextView) dialog.findViewById(R.id.txtHeight);
+        TextView fishDeep = (TextView) dialog.findViewById(R.id.txtDeep);
+        TextView fishAge = (TextView) dialog.findViewById(R.id.txtAge);
+
+        fishName.setText("Tên tiếng anh: " + fish.getName());
         fishName.setTextSize(30);
+        fishWeight.setText("Cân nặng: " + String.valueOf(fish.getWeight()) + "(kg)");
+        fishWeight.setTextSize(20);
+        fishLength.setText("Chiều dài: " + String.valueOf(fish.getLenght()) + "(m)");
+        fishLength.setTextSize(20);
+//        fishHeight.setText("Height:" + String.valueOf(fish.getHeight()));
+//        fishHeight.setTextSize(30);
+        fishDeep.setText("Độ sâu: " + String.valueOf(fish.getDeep()) + "(m)");
+        fishDeep.setTextSize(20);
+        fishAge.setText("Tuổi thọ: " + String.valueOf(fish.getAge()) + "(năm)");
+        fishAge.setTextSize(20);
 
 
         ImageView dialogButton = (ImageView) dialog.findViewById(R.id.dialogButtonOK);
@@ -456,8 +495,8 @@ public class StartActivity extends AppCompatActivity {
 
     private void saveInternalStatic() {
         List<Fish> fishList = new ArrayList<>();
-        fishList.add(new Fish(1, "Ca Heo", 1, 1, 1, 1, 1, String.valueOf(R.drawable.dolphin), String.valueOf(R.drawable.dolphin_info), "Enable"));
-        fishList.add(new Fish(1, "Ca Map", 1, 1, 1, 2, 1, String.valueOf(R.drawable.shark), String.valueOf(R.drawable.shark_info), "Enable"));
+        fishList.add(new Fish(1, "Dolphin", 1, 1, 1, 1, 1, String.valueOf(R.drawable.dolphin), String.valueOf(R.drawable.dolphin_info), "Enable"));
+        fishList.add(new Fish(1, "Shark", 1, 1, 1, 2, 1, String.valueOf(R.drawable.shark), String.valueOf(R.drawable.shark_info), "Enable"));
 
         saveInternal(fishList);
     }
