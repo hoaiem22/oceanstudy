@@ -42,8 +42,8 @@ public class GetFishesUseAPI extends AsyncTask<Object, String, String>  {
             url = (String) objects[0];
             URL myUrl = new URL(url);
             HttpURLConnection httpUrlConnection = (HttpURLConnection) myUrl.openConnection();
-            httpUrlConnection.setConnectTimeout(10000);
-            httpUrlConnection.setReadTimeout(10000);
+            httpUrlConnection.setConnectTimeout(5000);
+            httpUrlConnection.setReadTimeout(5000);
             Log.i("Responseeee", "Codeeeeeee: " + httpUrlConnection.getResponseCode());
             httpUrlConnection.connect();
 
