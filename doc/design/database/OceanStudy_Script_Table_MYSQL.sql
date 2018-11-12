@@ -10,9 +10,9 @@ create table os_fish (
     age int,
     img varchar(250),
     video varchar(250),
+    `status` varchar(50),
     primary key (id)
 );
-
 
 
 
