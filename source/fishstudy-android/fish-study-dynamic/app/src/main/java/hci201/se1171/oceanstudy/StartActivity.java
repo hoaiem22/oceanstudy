@@ -52,7 +52,7 @@ import pl.droidsonroids.gif.GifImageView;
 
 public class StartActivity extends AppCompatActivity {
 
-    private static String url = "http://192.168.1.75:8090/fish/getListActiveAsc";
+    private static String url = "http://172.20.10.7:8090/fish/getListActiveAsc";
     private static final int READ_BLOCK_SIZE = 5000;
     Context context = this;
     ImageView poiting;
@@ -333,7 +333,7 @@ public class StartActivity extends AppCompatActivity {
                 layoutBody.removeAllViews();
                 loadToLayout(layoutBody, fishShow);
                 //Notify fish update
-                Toast.makeText(getApplicationContext(), "Fish has been update", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Fish has been updated", Toast.LENGTH_LONG).show();
             } else {
                 Toast.makeText(getApplicationContext(), "Oops, you don't have enough fish to start game." +
                         "Please open 3G or Wifi to update fishes.", Toast.LENGTH_LONG).show();
@@ -413,7 +413,6 @@ public class StartActivity extends AppCompatActivity {
                 }
                 for (int i = 0; i < fishList.size(); i++) {
                     s += fishList.get(i).toString();
-                    Log.i("Fishhhhhhhh" + i, fishList.get(i).toString());
                 }
                 buffer = new char[READ_BLOCK_SIZE];
             }
@@ -495,8 +494,8 @@ public class StartActivity extends AppCompatActivity {
 
     private void saveInternalStatic() {
         List<Fish> fishList = new ArrayList<>();
-        fishList.add(new Fish(1, "Dolphin", 1, 1, 1, 1, 1, String.valueOf(R.drawable.dolphin), String.valueOf(R.drawable.dolphin_info), "Enable"));
-        fishList.add(new Fish(1, "Shark", 1, 1, 1, 2, 1, String.valueOf(R.drawable.shark), String.valueOf(R.drawable.shark_info), "Enable"));
+        fishList.add(new Fish(1, "Dolphin", 190, 6, 1, 50, 60, String.valueOf(R.drawable.dolphin), String.valueOf(R.drawable.dolphin_info), "Enable"));
+        fishList.add(new Fish(1, "Shark", 2000, 10, 2, 60, 30, String.valueOf(R.drawable.shark), String.valueOf(R.drawable.shark_info), "Enable"));
 
         saveInternal(fishList);
     }
